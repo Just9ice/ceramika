@@ -96,7 +96,7 @@ export default function AdminDashboard() {
                         <select
                           className="bg-input border border-border rounded px-2 py-1 text-sm focus:border-accent outline-none"
                           value={formData.tag || ''}
-                          onChange={e => setFormData({ ...formData, tag: e.target.value })}
+                          onChange={e => setFormData({ ...formData, tag: e.target.value as Product['tag'] })}
                         >
                           <option value="">None</option>
                           <option value="Bestseller">Bestseller</option>

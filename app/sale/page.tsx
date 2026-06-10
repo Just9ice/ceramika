@@ -26,7 +26,7 @@ export default function SalePage() {
             The Sale Edit
           </h1>
           <p className="text-muted-foreground text-sm max-w-2xl leading-relaxed">
-            Selected stock, significantly reduced. Don't miss out on these premium cuts for your next project. Available while supplies last.
+            Selected stock, significantly reduced. Don&apos;t miss out on these premium cuts for your next project. Available while supplies last.
           </p>
         </div>
 

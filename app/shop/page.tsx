@@ -6,9 +6,51 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import CartDrawer from "@/components/CartDrawer";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, Product } from "@/lib/data";
+import { PRODUCTS } from "@/lib/data";
 import { useCart } from "@/components/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
+
+function FilterSection({ 
+  title, 
+  options, 
+  state, 
+  stateUpdater 
+}: { 
+  title: string, 
+  options: string[], 
+  state: string[], 
+  stateUpdater: React.Dispatch<React.SetStateAction<string[]>> 
+}) {
+  return (
+    <div className="mb-8">
+      <h4 className="text-sm font-black tracking-widest uppercase mb-4 text-foreground/80">{title}</h4>
+      <div className="space-y-3">
+        {options.map(opt => (
+          <label key={opt} className="flex items-center gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              className="sr-only" 
+              checked={state.includes(opt)}
+              onChange={() => {
+                stateUpdater(prev => prev.includes(opt) ? prev.filter(i => i !== opt) : [...prev, opt]);
+              }}
+            />
+            <div className={`w-4 h-4 border rounded flex items-center justify-center transition-colors ${state.includes(opt) ? 'bg-primary border-primary' : 'border-border group-hover:border-primary/50'}`}>
+              {state.includes(opt) && (
+                <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+            </div>
+            <span className={`text-sm ${state.includes(opt) ? 'text-foreground font-semibold' : 'text-muted-foreground group-hover:text-foreground'}`}>
+              {opt}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // Extract unique filter options from PRODUCTS
 const sizes = Array.from(new Set(PRODUCTS.map(p => p.size))).sort();
@@ -36,36 +78,7 @@ export default function ShopPage() {
     });
   }, [selectedSizes, selectedMaterials, selectedFinishes, selectedRooms]);
 
-  function handleFilterChange(
-    stateUpdater: React.Dispatch<React.SetStateAction<string[]>>, 
-    value: string
-  ) {
-    stateUpdater(prev => 
-      prev.includes(value) ? prev.filter(i => i !== value) : [...prev, value]
-    );
-  }
 
-  const FilterSection = ({ title, options, state, stateUpdater }: { title: string, options: string[], state: string[], stateUpdater: any }) => (
-    <div className="mb-8">
-      <h4 className="text-sm font-black tracking-widest uppercase mb-4 text-foreground/80">{title}</h4>
-      <div className="space-y-3">
-        {options.map(opt => (
-          <label key={opt} className="flex items-center gap-3 cursor-pointer group">
-            <div className={`w-4 h-4 border rounded flex items-center justify-center transition-colors ${state.includes(opt) ? 'bg-primary border-primary' : 'border-border group-hover:border-primary/50'}`}>
-              {state.includes(opt) && (
-                <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              )}
-            </div>
-            <span className={`text-sm ${state.includes(opt) ? 'text-foreground font-semibold' : 'text-muted-foreground group-hover:text-foreground'}`}>
-              {opt}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-background flex flex-col pt-20">

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { ShoppingCart } from 'lucide-react';
+import { CeramikaLogo } from '@/components/ui/CeramikaLogo';
 
 export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: number; onCartOpen: () => void }) {
     const pathname = usePathname();
@@ -84,10 +85,8 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
                 >
                     <Link href="/">
                         {/* We use a stylized text logo or an image logo based on what you have */}
-                        <div className="flex items-center">
-                            <span className="font-serif text-2xl tracking-[0.3em] font-black uppercase text-foreground">
-                                CeramiKa
-                            </span>
+                        <div className="flex items-center text-foreground hover:text-[#a68038] dark:hover:text-[#c8a96e] transition-colors duration-300">
+                            <CeramikaLogo className="h-[22px] sm:h-6 w-auto" />
                         </div>
                     </Link>
                 </motion.div>

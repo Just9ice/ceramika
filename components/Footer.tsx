@@ -5,6 +5,7 @@ import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Clock, Lock, Truck, RotateCcw, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { CeramikaLogo } from '@/components/ui/CeramikaLogo';
 
 const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 20 },
@@ -68,13 +69,8 @@ export default function Footer() {
 
                     {/* Brand column */}
                     <motion.div {...fadeUp(0)}>
-                        <Link href="/" className="inline-block mb-6">
-                            <span
-                                className="font-black tracking-[0.25em] text-foreground text-xl"
-                                style={{ fontFamily: "'Georgia', serif" }}
-                            >
-                                C E R A M I K A
-                            </span>
+                        <Link href="/" className="inline-block mb-6 text-foreground hover:text-[#a68038] dark:hover:text-[#c8a96e] transition-colors duration-300">
+                            <CeramikaLogo className="h-6 w-auto" />
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xs">
                             Nigeria&apos;s premier destination for premium tiles and finishing materials. Trusted by homeowners, contractors, and architects nationwide since 2012.

@@ -154,8 +154,7 @@ function FAQBento() {
                         Delivery
                         <br />
                         <span
-                            className="text-transparent"
-                            className="[-webkit-text-stroke:1px_#a68038] dark:[-webkit-text-stroke:1px_rgba(200,169,110,0.5)]" 
+                            className="text-transparent [-webkit-text-stroke:1px_#a68038] dark:[-webkit-text-stroke:1px_rgba(200,169,110,0.5)]" 
                         >
                             FAQs
                         </span>
@@ -347,8 +346,7 @@ export default function DeliveryPage() {
                         <span className="text-foreground">Delivery</span>
                         <br />
                         <span
-                            className="text-transparent"
-                            className="[-webkit-text-stroke:2px_#a68038] dark:[-webkit-text-stroke:2px_rgba(200,169,110,0.55)]" 
+                            className="text-transparent [-webkit-text-stroke:2px_#a68038] dark:[-webkit-text-stroke:2px_rgba(200,169,110,0.55)]" 
                         >
                             Everywhere.
                         </span>
@@ -415,8 +413,8 @@ export default function DeliveryPage() {
             ══════════════════════════════════════════════════════════════ */}
             <section className="relative border-y border-border py-20 overflow-hidden">
                 <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'var(--gradient-section, transparent)' }} className="absolute inset-0 pointer-events-none bg-gradient-to-b from-muted/20 to-background"
+                    className="absolute inset-0 pointer-events-none bg-gradient-to-b from-muted/20 to-background"
+                    style={{ background: 'var(--gradient-section, transparent)' }}
                 />
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
                     <motion.div
@@ -629,8 +627,8 @@ export default function DeliveryPage() {
             ══════════════════════════════════════════════════════════════ */}
             <section className="relative border-y border-border py-20 overflow-hidden">
                 <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'var(--gradient-section, transparent)' }} className="absolute inset-0 pointer-events-none bg-gradient-to-b from-muted/20 to-background"
+                    className="absolute inset-0 pointer-events-none bg-gradient-to-b from-muted/20 to-background"
+                    style={{ background: 'var(--gradient-section, transparent)' }}
                 />
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">

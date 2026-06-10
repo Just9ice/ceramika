@@ -8,7 +8,7 @@ import ProductCard from "@/components/ProductCard";
 import CategoryCard from "@/components/CategoryCard";
 import { useState, useRef } from "react";
 import { FaWhatsapp as WhatsAppIcon } from 'react-icons/fa';
-import { PRODUCTS, TESTIMONIALS, waGeneralLink } from "@/lib/data";
+import { PRODUCTS, TESTIMONIALS, waGeneralLink, Product } from "@/lib/data";
 import { animateFlyToCart } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardContainer } from "@/components/ui/3d-card";
@@ -16,7 +16,7 @@ import Link from "next/link";
 import { Calculator, Bath, ChefHat, Grid2x2, Gem, Square, Layers, Sparkles, Brush, type LucideIcon } from "lucide-react";
 import { useCart } from "@/components/CartContext";
 
-const WA_NUMBER = '2348100000000';
+
 
 
 interface Category {
@@ -61,7 +61,7 @@ export default function Home() {
     sqm: number; withWaste: number; cartons: number; total: number;
   } | null>(null);
 
-  function handleAddToCartLocal(product: any, sourceEl?: HTMLElement | null) {
+  function handleAddToCartLocal(product: Product, sourceEl?: HTMLElement | null) {
       addToCart(product, sourceEl);
       if (sourceEl) {
          animateFlyToCart(sourceEl);
@@ -108,16 +108,17 @@ export default function Home() {
             backgroundSize: "80px 80px",
           }}
         />
-        {/* Cursor-tracking radial glow blob */}
+        {/* Cursor-tracking premium morphing blob */}
         <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
+          className="absolute w-[600px] h-[600px] pointer-events-none blob-morph"
           animate={{
             left: `calc(${cursor.x * 100}% - 300px)`,
             top:  `calc(${cursor.y * 100}% - 300px)`,
           }}
-          transition={{ type: 'spring', stiffness: 60, damping: 22, mass: 0.8 }}
+          transition={{ type: 'spring', stiffness: 35, damping: 25, mass: 1 }}
           style={{
-            background: 'radial-gradient(circle, rgba(200,169,110,0.16) 0%, rgba(200,169,110,0.06) 40%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(200,169,110,0.22) 0%, rgba(200,169,110,0.12) 30%, transparent 65%)',
+            filter: 'blur(10px)',
           }}
         />
         {/* Right panel dark fade */}

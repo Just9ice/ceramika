@@ -127,3 +127,15 @@
     @apply font-sans;
   }
 }
+
+@keyframes blob-morph {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75% { border-radius: 40% 50% 60% 30% / 60% 40% 60% 50%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+.blob-morph {
+  border-radius: 50%; /* spherical fallback */
+  animation: blob-morph 12s ease-in-out infinite;
+}
