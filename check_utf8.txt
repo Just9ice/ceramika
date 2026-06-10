@@ -1,0 +1,746 @@
+﻿
+> cerameka@0.1.0 typecheck
+> tsc --noEmit
+
+app/about/page.tsx(165,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(175,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(185,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(200,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(219,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(257,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(278,33): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(306,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(322,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(363,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(386,41): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(425,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(492,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(501,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/about/page.tsx(514,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/by-finish/page.tsx(147,37): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/by-material/page.tsx(24,9): error TS2561: Object literal may only specify known properties, but 'icon' does not exist in type '{ Icon: any; priceRange: string; accent: string; pros: string[]; care: string; }'. Did you mean to write 'Icon'?
+app/by-material/page.tsx(31,9): error TS2561: Object literal may only specify known properties, but 'icon' does not exist in type '{ Icon: any; priceRange: string; accent: string; pros: string[]; care: string; }'. Did you mean to write 'Icon'?
+app/by-material/page.tsx(38,9): error TS2561: Object literal may only specify known properties, but 'icon' does not exist in type '{ Icon: any; priceRange: string; accent: string; pros: string[]; care: string; }'. Did you mean to write 'Icon'?
+app/by-material/page.tsx(45,9): error TS2561: Object literal may only specify known properties, but 'icon' does not exist in type '{ Icon: any; priceRange: string; accent: string; pros: string[]; care: string; }'. Did you mean to write 'Icon'?
+app/by-material/page.tsx(151,37): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/by-material/page.tsx(168,105): error TS2551: Property 'icon' does not exist on type '{ Icon: any; priceRange: string; accent: string; pros: string[]; care: string; }'. Did you mean 'Icon'?
+app/contact/page.tsx(192,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/contact/page.tsx(246,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/contact/page.tsx(390,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/contact/page.tsx(448,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/contact/page.tsx(470,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(426,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(477,33): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(511,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(535,33): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(614,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(641,29): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(671,41): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(700,37): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(736,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(783,21): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(829,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(838,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(853,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/delivery/page.tsx(867,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/faq/page.tsx(196,37): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/faq/page.tsx(298,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/faq/page.tsx(307,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/faq/page.tsx(320,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/faq/page.tsx(333,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/projects/page.tsx(322,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/projects/page.tsx(338,33): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/projects/page.tsx(402,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/projects/page.tsx(411,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+app/projects/page.tsx(423,25): error TS2322: Type '{ hidden: { opacity: number; y: number; }; show: (i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'show' is incompatible with index signature.
+    Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i?: number) => { opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { duration: number; delay: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; delay: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+components/ui/3d-card.tsx(114,3): error TS2411: Property 'as' of type 'ElementType<any, keyof IntrinsicElements> | undefined' is not assignable to 'string' index type 'ReactNode | CSSProperties'.
