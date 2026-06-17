@@ -4,7 +4,7 @@ import { PHONE, EMAIL, ADDRESS } from '../lib/data';
 import Link from 'next/link';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CeramikaLogo } from '@/components/ui/CeramikaLogo';
+
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Left Column: Brand & Contact */}
           <motion.div {...fadeUp(0)} className="flex flex-col">
             <Link href="/" className="inline-block mb-6 text-foreground hover:text-[#a68038] transition-colors duration-300">
-              <CeramikaLogo className="h-5 w-auto" />
+              <img src="/Logo.PNG" alt="Ceramika Logo" className="h-6 w-auto object-contain" />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
               Nigeria&apos;s premier destination for premium tiles and finishing materials. Trusted by homeowners, contractors, and architects nationwide.

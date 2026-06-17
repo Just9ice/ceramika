@@ -1,17 +1,19 @@
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { ShoppingCart } from "lucide-react";
 
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
-import { useScroll, useTransform, useMotionTemplate } from 'framer-motion';
-import { ShoppingCart } from 'lucide-react';
-import { CeramikaLogo } from '@/components/ui/CeramikaLogo';
-
-export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: number; onCartOpen: () => void }) {
+export default function Navbar({
+  cartCount = 0,
+  onCartOpen,
+}: {
+  cartCount: number;
+  onCartOpen: () => void;
+}) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const blur = useTransform(scrollY, [0, 200], [0, 12]);
-  const blurFilter = useMotionTemplate`blur(${blur}px)`;
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +29,8 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
 
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('[aria-label="Toggle menu"]') || target.closest('nav')) return;
+      if (target.closest('[aria-label="Toggle menu"]') || target.closest("nav"))
+        return;
       setMenuOpen(false);
     };
 
@@ -35,7 +38,13 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
     return () => document.removeEventListener("click", handleClickOutside);
   }, [menuOpen]);
 
-  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+  const NavLink = ({
+    href,
+    children,
+  }: {
+    href: string;
+    children: React.ReactNode;
+  }) => {
     const isActive = pathname === href;
     return (
       <Link href={href} passHref legacyBehavior>
@@ -50,7 +59,7 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
               transition={{
                 type: "spring",
                 stiffness: 400,
-                damping: 30
+                damping: 30,
               }}
             />
           )}
@@ -65,11 +74,9 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/80 backdrop-blur-md shadow-lg" : "bg-transparent"}`}
-      style={{ backdropFilter: blurFilter }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/40 backdrop-blur-xl border-b border-white/20 shadow-sm saturate-150" : "bg-transparent backdrop-blur-0"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
         {/* Left Links (Desktop) */}
         <div className="hidden md:flex flex-1 items-center gap-8 justify-start">
           <NavLink href="/shop">Shop</NavLink>
@@ -85,7 +92,11 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
           <Link href="/">
             {/* We use a stylized text logo or an image logo based on what you have */}
             <div className="flex items-center text-foreground hover:text-[#a68038] transition-colors duration-300">
-              <CeramikaLogo className="h-[22px] sm:h-6 w-auto" />
+              <img
+                src="/Logo.PNG"
+                alt="Ceramika Logo"
+                className="h-6 sm:h-8 w-auto object-contain"
+              />
             </div>
           </Link>
         </motion.div>
@@ -94,12 +105,16 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
         <div className="hidden md:flex flex-1 items-center gap-8 justify-end">
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/about">About</NavLink>
-          
+
           <div className="flex items-center gap-4 pl-4 border-l border-border/50">
             <motion.button
               onClick={onCartOpen}
               whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.15, rotate: -15, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+              whileHover={{
+                scale: 1.15,
+                rotate: -15,
+                transition: { type: "spring", stiffness: 400, damping: 10 },
+              }}
               className="relative flex items-center gap-2 p-2 text-sm font-semibold tracking-widest text-foreground/70 hover:text-foreground transition-colors uppercase"
             >
               <ShoppingCart className="w-5 h-5" />
@@ -113,7 +128,11 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
           <motion.button
             onClick={onCartOpen}
             whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.15, rotate: -15, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+            whileHover={{
+              scale: 1.15,
+              rotate: -15,
+              transition: { type: "spring", stiffness: 400, damping: 10 },
+            }}
             className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
           >
             <ShoppingCart className="w-5 h-5" />
@@ -132,14 +151,30 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
             className="p-2 text-foreground/70 hover:text-foreground"
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {menuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {menuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
             </svg>
           </button>
         </div>
-
       </div>
 
       {/* Mobile Nav Menu */}
@@ -147,16 +182,16 @@ export default function Navbar({ cartCount = 0, onCartOpen }: { cartCount: numbe
         <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border/50 px-6 py-4 flex flex-col gap-4 shadow-xl"
           >
             {[
-              { label: 'Shop', href: '/shop' },
-              { label: 'Collections', href: '/collections' },
-              { label: 'Sale', href: '/sale' },
-              { label: 'About', href: '/about' },
+              { label: "Shop", href: "/shop" },
+              { label: "Collections", href: "/collections" },
+              { label: "Sale", href: "/sale" },
+              { label: "About", href: "/about" },
             ].map((link) => (
               <Link href={link.href} key={link.label} legacyBehavior>
                 <a
