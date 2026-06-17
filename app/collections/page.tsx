@@ -9,6 +9,8 @@ import CategoryCard from "@/components/CategoryCard";
 import { useCart } from "@/components/CartContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { Bath, ChefHat, Grid2x2, Gem, Square, Layers, Sparkles, Brush, type LucideIcon } from "lucide-react";
+import { waGeneralLink } from "@/lib/data";
+import { FaWhatsapp as WhatsAppIcon } from 'react-icons/fa';
 
 interface Category {
  label: string;
@@ -66,6 +68,32 @@ export default function CollectionsPage() {
      ))}
     </div>
    </main>
+
+   {/* ═══════════════════════════════════════════════════════════════
+     WHATSAPP CTA
+   ═══════════════════════════════════════════════════════════════ */}
+   <section className="relative bg-[#25d366]/[0.12] py-20 border-t border-border overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 50%, rgba(37,211,102,0.18) 0%, transparent 70%)' }} />
+    <div className="relative max-w-xl mx-auto text-center px-4">
+     <div className="relative inline-flex items-center justify-center mb-7">
+      <motion.div className="absolute w-20 h-20 rounded-full" style={{ background: 'rgba(37,211,102,0.12)' }} animate={{ scale: [1, 1.45, 1.7], opacity: [0.5, 0.15, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }} />
+      <motion.div className="absolute w-20 h-20 rounded-full" style={{ background: 'rgba(37,211,102,0.08)' }} animate={{ scale: [1, 1.3, 1.55], opacity: [0.4, 0.12, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', delay: 0.6 }} />
+      <div className="relative w-16 h-16 bg-[#25d366]/10 border border-[#25d366]/25 rounded-full flex items-center justify-center">
+       <WhatsAppIcon className="w-8 h-8 text-[#25d366]" />
+      </div>
+     </div>
+     <motion.h2 className="text-foreground font-black mb-3" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+      Not sure which collection?
+     </motion.h2>
+     <p className="text-foreground/80 mb-8 leading-relaxed">
+      Tell us about your space and we&apos;ll recommend the perfect tiles for your budget — for free.
+     </p>
+     <motion.a href={waGeneralLink("Hello! I need help choosing a tile collection for my project.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm" whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(37,211,102,0.3)' }} whileTap={{ scale: 0.97 }}>
+      <WhatsAppIcon className="w-5 h-5" /> Chat with Our Team
+     </motion.a>
+     <p className="text-foreground/80 text-xs mt-4">Average response time: under 10 minutes</p>
+    </div>
+   </section>
 
    <Footer />
    <FloatingWhatsApp />
