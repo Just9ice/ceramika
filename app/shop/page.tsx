@@ -55,29 +55,25 @@ function FilterSection({
 
 // Extract unique filter options from PRODUCTS
 const sizes = Array.from(new Set(PRODUCTS.map(p => p.size))).sort();
-const materials = Array.from(new Set(PRODUCTS.map(p => p.material))).sort();
-const finishes = Array.from(new Set(PRODUCTS.map(p => p.finish))).sort();
-const rooms = Array.from(new Set(PRODUCTS.map(p => p.room))).sort();
+const EFFECTS_OPTIONS = [
+  'Coloured Clay', 'Marble', 'Travertine', 'Wood', 'Cement', 'Brick Face', 'Rustic', 'Mosaic', 'Basic'
+];
 
 export default function ShopPage() {
  const { cart, addToCart, cartOpen, setCartOpen, removeFromCart } = useCart();
  
  // Filter States
  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
- const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
- const [selectedFinishes, setSelectedFinishes] = useState<string[]>([]);
- const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
+ const [selectedEffects, setSelectedEffects] = useState<string[]>([]);
 
  // Filtering Logic
  const filteredProducts = useMemo(() => {
   return PRODUCTS.filter(p => {
    if (selectedSizes.length > 0 && !selectedSizes.includes(p.size)) return false;
-   if (selectedMaterials.length > 0 && !selectedMaterials.includes(p.material)) return false;
-   if (selectedFinishes.length > 0 && !selectedFinishes.includes(p.finish)) return false;
-   if (selectedRooms.length > 0 && !selectedRooms.includes(p.room)) return false;
+   if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish)) return false;
    return true;
   });
- }, [selectedSizes, selectedMaterials, selectedFinishes, selectedRooms]);
+ }, [selectedSizes, selectedEffects]);
 
 
 
@@ -101,9 +97,7 @@ export default function ShopPage() {
      {/* Sidebar */}
      <aside className="w-full md:w-64 shrink-0">
       <FilterSection title="Size" options={sizes} state={selectedSizes} stateUpdater={setSelectedSizes} />
-      <FilterSection title="Material" options={materials} state={selectedMaterials} stateUpdater={setSelectedMaterials} />
-      <FilterSection title="Finish" options={finishes} state={selectedFinishes} stateUpdater={setSelectedFinishes} />
-      <FilterSection title="Room" options={rooms} state={selectedRooms} stateUpdater={setSelectedRooms} />
+      <FilterSection title="Effects" options={EFFECTS_OPTIONS} state={selectedEffects} stateUpdater={setSelectedEffects} />
      </aside>
 
      {/* Grid */}
@@ -118,9 +112,7 @@ export default function ShopPage() {
         <button 
          onClick={() => {
           setSelectedSizes([]);
-          setSelectedMaterials([]);
-          setSelectedFinishes([]);
-          setSelectedRooms([]);
+          setSelectedEffects([]);
          }}
          className="mt-4 text-primary hover:underline text-sm font-semibold"
         >
@@ -171,7 +163,7 @@ export default function ShopPage() {
      <motion.a href={waGeneralLink("Hello! I need help choosing tiles for my project.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm" whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(37,211,102,0.3)' }} whileTap={{ scale: 0.97 }}>
       <WhatsAppIcon className="w-5 h-5" /> Chat with Our Team
      </motion.a>
-     <p className="text-foreground/80 text-xs mt-4">Average response time: under 10 minutes</p>
+
     </div>
    </section>
 

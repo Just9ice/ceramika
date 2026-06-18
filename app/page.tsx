@@ -10,31 +10,39 @@ import { useCart } from "@/components/CartContext";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Calculator } from "lucide-react";
-import { FaWhatsapp as WhatsAppIcon } from 'react-icons/fa';
+import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
 
 export default function Home() {
   const { cart, addToCart, cartOpen, setCartOpen, removeFromCart } = useCart();
 
-  const [calcLength, setCalcLength] = useState('');
-  const [calcWidth, setCalcWidth] = useState('');
-  const [calcPrice, setCalcPrice] = useState('');
+  const [calcLength, setCalcLength] = useState("");
+  const [calcWidth, setCalcWidth] = useState("");
+  const [calcPrice, setCalcPrice] = useState("");
   const [calcResult, setCalcResult] = useState<{
-   sqm: number; withWaste: number; cartons: number; total: number;
+    sqm: number;
+    withWaste: number;
+    cartons: number;
+    total: number;
   } | null>(null);
 
   function runCalculator() {
-   const l = parseFloat(calcLength);
-   const w = parseFloat(calcWidth);
-   const p = parseFloat(calcPrice);
-   if (!l || !w || !p) return;
-   const sqm = l * w;
-   const withWaste = sqm * 1.1;
-   const cartons = Math.ceil(withWaste / 1.44);
-   const total = withWaste * p;
-   setCalcResult({ sqm, withWaste, cartons, total });
+    const l = parseFloat(calcLength);
+    const w = parseFloat(calcWidth);
+    const p = parseFloat(calcPrice);
+    if (!l || !w || !p) return;
+    const sqm = l * w;
+    const withWaste = sqm * 1.1;
+    const cartons = Math.ceil(withWaste / 1.44);
+    const total = withWaste * p;
+    setCalcResult({ sqm, withWaste, cartons, total });
   }
 
-  const displayResult = calcResult ?? { sqm: 0, withWaste: 0, cartons: 0, total: 0 };
+  const displayResult = calcResult ?? {
+    sqm: 0,
+    withWaste: 0,
+    cartons: 0,
+    total: 0,
+  };
 
   function handleAddToCartLocal(product: Product) {
     addToCart(product);
@@ -50,7 +58,7 @@ export default function Home() {
           {/* We use a relevant image from public, or just fallback to hero-main */}
           <img
             src="/living-room.jpg"
-            className="w-full h-full object-cover bg-gradient-to-b from-white/10 to-black/60"
+            className="w-full h-full object-cover bg-gradient-to-b from-white/90 via-black/30 to-black/60"
             alt="Hero Background"
           />
           {/* Subtle overlay to ensure text is readable based on the reference */}
@@ -154,100 +162,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Collections Section */}
-      <section className="bg-[#fbfa8] py-24 pb-12">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 border-b border-border/50 pb-6 mb-12 flex items-end justify-between">
-          <h2
-            className="text-[#1a1a1a] font-normal"
-            style={{
-              fontFamily: "var(--font-cormorant), serif",
-              fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
-            }}
-          >
-            Featured collections
-          </h2>
-          <Link
-            href="/shop"
-            className="text-xs font-semibold tracking-[0.2em] uppercase text-[#777] hover:text-[#c19b6e] transition-colors"
-          >
-            View all
-          </Link>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Link href="/shop" className="group block cursor-pointer">
-            <img
-              src="/living-room.jpg"
-              alt="Indoor Floors"
-              className="w-full aspect-[4/3] object-cover mb-5 transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-            <div className="flex justify-between items-center text-[#1a1a1a]">
-              <span
-                className="font-normal text-2xl"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Indoor Floors
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#c19b6e]">
-                Shop
-              </span>
-            </div>
-            <p className="text-sm text-[#777] mt-1.5">
-              Large-format calm for living spaces
-            </p>
-          </Link>
-
-          <Link href="/shop" className="group block cursor-pointer">
-            <img
-              src="/outdoor.jpg"
-              alt="Outdoor & Pool"
-              className="w-full aspect-[4/3] object-cover mb-5 transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-            <div className="flex justify-between items-center text-[#1a1a1a]">
-              <span
-                className="font-normal text-2xl"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Outdoor & Pool
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#c19b6e]">
-                Shop
-              </span>
-            </div>
-            <p className="text-sm text-[#777] mt-1.5">
-              Slip-resistant surfaces for the sun
-            </p>
-          </Link>
-
-          <Link href="/shop" className="group block cursor-pointer">
-            <img
-              src="/wall.jpg"
-              alt="Feature Walls"
-              className="w-full aspect-[4/3] object-cover mb-5 transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-            <div className="flex justify-between items-center text-[#1a1a1a]">
-              <span
-                className="font-normal text-2xl"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Feature Walls
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#c19b6e]">
-                Shop
-              </span>
-            </div>
-            <p className="text-sm text-[#777] mt-1.5">
-              Texture and quiet character
-            </p>
-          </Link>
-        </div>
-      </section>
-
       {/* Sale Edit Section */}
       <section className="bg-[#fbfa8] py-20 pb-32">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 mb-14">
           <p className="text-[#c19b6e] text-xs font-semibold tracking-[0.2em] uppercase mb-4 mt-8">
-            The Sale Edit
+            Best Sellers
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-border/50 pb-6 gap-4">
             <h2
@@ -260,10 +179,10 @@ export default function Home() {
               Selected stock, significantly reduced
             </h2>
             <Link
-              href="/sale"
+              href="/shop"
               className="text-xs font-semibold tracking-[0.2em] uppercase text-[#777] hover:text-[#c19b6e] transition-colors shrink-0"
             >
-              Shop the edit
+              View Best Sellers
             </Link>
           </div>
         </div>
@@ -379,22 +298,55 @@ export default function Home() {
         SQM CALCULATOR
       ═══════════════════════════════════════════════════════════════ */}
       <section className="relative bg-background py-24 border-y border-border overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none" style={{ background: 'radial-gradient(circle at 80% 20%, rgba(200,169,110,0.06) 0%, transparent 70%)' }}></div>
+        <div
+          className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle at 80% 20%, rgba(200,169,110,0.06) 0%, transparent 70%)",
+          }}
+        ></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
-              <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border text-xs" style={{ borderColor: 'rgba(200,169,110,0.25)', background: 'rgba(200,169,110,0.06)', color: '#c8a96e' }}>
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div
+                className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border text-xs"
+                style={{
+                  borderColor: "rgba(200,169,110,0.25)",
+                  background: "rgba(200,169,110,0.06)",
+                  color: "#c8a96e",
+                }}
+              >
                 <Calculator className="w-3.5 h-3.5" /> Free Tool
               </div>
-              <h2 className="text-foreground font-black leading-tight mb-4" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
-                SqM &amp; Cost<br />
-                <span className="text-transparent [-webkit-text-stroke:1.5px_#a68038] opacity-90">Calculator.</span>
+              <h2
+                className="text-foreground font-black leading-tight mb-4"
+                style={{
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                }}
+              >
+                SqM &amp; Cost
+                <br />
+                <span className="text-transparent [-webkit-text-stroke:1.5px_#a68038] opacity-90">
+                  Calculator.
+                </span>
               </h2>
               <p className="text-foreground/80 leading-relaxed mb-7 text-sm max-w-md">
-                Enter your room dimensions. We&apos;ll calculate the exact square metres needed, add a 10% wastage buffer, and give you the total cost and carton count.
+                Enter your room dimensions. We&apos;ll calculate the exact
+                square metres needed, add a 10% wastage buffer, and give you the
+                total cost and carton count.
               </p>
               <div className="flex flex-col gap-3">
-                {["Includes 10% wastage buffer", "Carton count included", "Works with any tile price"].map((item) => (
+                {[
+                  "Includes 10% wastage buffer",
+                  "Carton count included",
+                  "Works with any tile price",
+                ].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#c8a96e] shrink-0" />
                     <span className="text-foreground/80 text-sm">{item}</span>
@@ -402,36 +354,103 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }} className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-xl hover:shadow-2xl transition-all">
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-xl hover:shadow-2xl transition-all"
+            >
               <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#c8a96e]/40 to-transparent" />
               <div className="p-7 sm:p-9">
-                <p className="text-foreground/80 text-xs uppercase tracking-widest mb-6">Room dimensions</p>
+                <p className="text-foreground/80 text-xs uppercase tracking-widest mb-6">
+                  Room dimensions
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
                   {[
-                    { label: "Length (m)", value: calcLength, set: setCalcLength, placeholder: "5" },
-                    { label: "Width (m)", value: calcWidth, set: setCalcWidth, placeholder: "4" },
-                    { label: "Price (₦/sqm)", value: calcPrice, set: setCalcPrice, placeholder: "12000" },
+                    {
+                      label: "Length (m)",
+                      value: calcLength,
+                      set: setCalcLength,
+                      placeholder: "5",
+                    },
+                    {
+                      label: "Width (m)",
+                      value: calcWidth,
+                      set: setCalcWidth,
+                      placeholder: "4",
+                    },
+                    {
+                      label: "Price (₦/sqm)",
+                      value: calcPrice,
+                      set: setCalcPrice,
+                      placeholder: "12000",
+                    },
                   ].map((field) => (
                     <div key={field.label} className="flex flex-col gap-1.5">
-                      <label className="text-muted-foreground text-[10px] uppercase tracking-widest">{field.label}</label>
-                      <input type="number" className="w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground outline-none text-sm transition-all focus:border-[#a68038] focus:ring-1 focus:ring-[#c8a96e]/20" placeholder={field.placeholder} value={field.value} onChange={(e) => field.set(e.target.value)} />
+                      <label className="text-muted-foreground text-[10px] uppercase tracking-widest">
+                        {field.label}
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground outline-none text-sm transition-all focus:border-[#a68038] focus:ring-1 focus:ring-[#c8a96e]/20"
+                        placeholder={field.placeholder}
+                        value={field.value}
+                        onChange={(e) => field.set(e.target.value)}
+                      />
                     </div>
                   ))}
                 </div>
-                <motion.button onClick={runCalculator} className="w-full py-3.5 rounded-xl bg-[#c8a96e] text-[#0b1410] font-black text-sm uppercase tracking-widest mb-6" whileHover={{ scale: 1.02, backgroundColor: '#d4b87e' }} whileTap={{ scale: 0.98 }}>
-                  <span className="flex items-center justify-center gap-2"><Calculator className="w-4 h-4" /> Calculate</span>
+                <motion.button
+                  onClick={runCalculator}
+                  className="w-full py-3.5 rounded-xl bg-[#c8a96e] text-[#0b1410] font-black text-sm uppercase tracking-widest mb-6"
+                  whileHover={{ scale: 1.02, backgroundColor: "#d4b87e" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <Calculator className="w-4 h-4" /> Calculate
+                  </span>
                 </motion.button>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { label: "Base Area", value: `${displayResult.sqm.toFixed(2)} sqm`, hi: false },
-                    { label: "With 10% Waste", value: `${displayResult.withWaste.toFixed(2)} sqm`, hi: true },
-                    { label: "Cartons Needed", value: `${displayResult.cartons} cartons`, hi: false },
-                    { label: "Est. Total", value: `₦${displayResult.total.toLocaleString("en-NG", { maximumFractionDigits: 0 })}`, hi: true },
+                    {
+                      label: "Base Area",
+                      value: `${displayResult.sqm.toFixed(2)} sqm`,
+                      hi: false,
+                    },
+                    {
+                      label: "With 10% Waste",
+                      value: `${displayResult.withWaste.toFixed(2)} sqm`,
+                      hi: true,
+                    },
+                    {
+                      label: "Cartons Needed",
+                      value: `${displayResult.cartons} cartons`,
+                      hi: false,
+                    },
+                    {
+                      label: "Est. Total",
+                      value: `₦${displayResult.total.toLocaleString("en-NG", { maximumFractionDigits: 0 })}`,
+                      hi: true,
+                    },
                   ].map((r) => (
                     <AnimatePresence key={r.label} mode="wait">
-                      <motion.div key={r.value} initial={{ opacity: 0.6, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }} className={`rounded-2xl p-4 border ${r.hi ? 'bg-[#c8a96e]/10 border-[#a68038]' : 'bg-muted/50 border-border'}`}>
-                        <p className="text-muted-foreground text-[10px] uppercase tracking-widest mb-1">{r.label}</p>
-                        <p className={`font-black text-xl ${r.hi ? 'text-[#a68038]' : 'text-foreground'}`} style={{ fontFamily: "var(--font-cormorant), serif" }}>{r.value}</p>
+                      <motion.div
+                        key={r.value}
+                        initial={{ opacity: 0.6, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className={`rounded-2xl p-4 border ${r.hi ? "bg-[#c8a96e]/10 border-[#a68038]" : "bg-muted/50 border-border"}`}
+                      >
+                        <p className="text-muted-foreground text-[10px] uppercase tracking-widest mb-1">
+                          {r.label}
+                        </p>
+                        <p
+                          className={`font-black text-xl ${r.hi ? "text-[#a68038]" : "text-foreground"}`}
+                          style={{ fontFamily: "var(--font-cormorant), serif" }}
+                        >
+                          {r.value}
+                        </p>
                       </motion.div>
                     </AnimatePresence>
                   ))}
@@ -446,25 +465,68 @@ export default function Home() {
         WHATSAPP CTA
       ═══════════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#25d366]/[0.12] py-20 border-t border-border overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 50%, rgba(37,211,102,0.18) 0%, transparent 70%)' }}></div>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(37,211,102,0.18) 0%, transparent 70%)",
+          }}
+        ></div>
         <div className="relative max-w-xl mx-auto text-center px-4">
           <div className="relative inline-flex items-center justify-center mb-7">
-            <motion.div className="absolute w-20 h-20 rounded-full" style={{ background: 'rgba(37,211,102,0.12)' }} animate={{ scale: [1, 1.45, 1.7], opacity: [0.5, 0.15, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}></motion.div>
-            <motion.div className="absolute w-20 h-20 rounded-full" style={{ background: 'rgba(37,211,102,0.08)' }} animate={{ scale: [1, 1.3, 1.55], opacity: [0.4, 0.12, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', delay: 0.6 }}></motion.div>
+            <motion.div
+              className="absolute w-20 h-20 rounded-full"
+              style={{ background: "rgba(37,211,102,0.12)" }}
+              animate={{ scale: [1, 1.45, 1.7], opacity: [0.5, 0.15, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+            ></motion.div>
+            <motion.div
+              className="absolute w-20 h-20 rounded-full"
+              style={{ background: "rgba(37,211,102,0.08)" }}
+              animate={{ scale: [1, 1.3, 1.55], opacity: [0.4, 0.12, 0] }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 0.6,
+              }}
+            ></motion.div>
             <div className="relative w-16 h-16 bg-[#25d366]/10 border border-[#25d366]/25 rounded-full flex items-center justify-center">
               <WhatsAppIcon className="w-8 h-8 text-[#25d366]" />
             </div>
           </div>
-          <motion.h2 className="text-foreground font-black mb-3" style={{ fontFamily: "var(--font-cormorant), serif", fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+          <motion.h2
+            className="text-foreground font-black mb-3"
+            style={{
+              fontFamily: "var(--font-cormorant), serif",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             Not sure which tile?
           </motion.h2>
           <p className="text-foreground/80 mb-8 leading-relaxed">
-            Tell us about your space and we&apos;ll recommend the perfect tiles for your budget — for free.
+            Tell us about your space and we&apos;ll recommend the perfect tiles
+            for your budget — for free.
           </p>
-          <motion.a href={waGeneralLink("Hello! I need help choosing tiles for my project.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm" whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(37,211,102,0.3)' }} whileTap={{ scale: 0.97 }}>
+          <motion.a
+            href={waGeneralLink(
+              "Hello! I need help choosing tiles for my project.",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 40px rgba(37,211,102,0.3)",
+            }}
+            whileTap={{ scale: 0.97 }}
+          >
             <WhatsAppIcon className="w-5 h-5" /> Chat with Our Team
           </motion.a>
-          <p className="text-foreground/80 text-xs mt-4">Average response time: under 10 minutes</p>
         </div>
       </section>
 

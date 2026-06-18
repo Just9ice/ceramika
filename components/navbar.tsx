@@ -5,6 +5,38 @@ import { usePathname } from "next/navigation";
 import { useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
 
+const NavLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  return (
+    <Link href={href} passHref legacyBehavior>
+      <motion.a
+        whileHover={{ scale: 1.05, y: -1 }}
+        className="relative px-3 py-2 text-sm font-semibold tracking-widest text-foreground/70 hover:text-foreground transition-colors uppercase"
+      >
+        {isActive && (
+          <motion.span
+            layoutId="nav-pill"
+            className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent transition-all duration-300"
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 30,
+            }}
+          />
+        )}
+        <span className="relative z-10">{children}</span>
+      </motion.a>
+    </Link>
+  );
+};
+
 export default function Navbar({
   cartCount = 0,
   onCartOpen,
@@ -38,36 +70,7 @@ export default function Navbar({
     return () => document.removeEventListener("click", handleClickOutside);
   }, [menuOpen]);
 
-  const NavLink = ({
-    href,
-    children,
-  }: {
-    href: string;
-    children: React.ReactNode;
-  }) => {
-    const isActive = pathname === href;
-    return (
-      <Link href={href} passHref legacyBehavior>
-        <motion.a
-          whileHover={{ scale: 1.05, y: -1 }}
-          className="relative px-3 py-2 text-sm font-semibold tracking-widest text-foreground/70 hover:text-foreground transition-colors uppercase"
-        >
-          {isActive && (
-            <motion.span
-              layoutId="nav-pill"
-              className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent transition-all duration-300"
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 30,
-              }}
-            />
-          )}
-          <span className="relative z-10">{children}</span>
-        </motion.a>
-      </Link>
-    );
-  };
+
 
   return (
     <motion.header
@@ -80,7 +83,6 @@ export default function Navbar({
         {/* Left Links (Desktop) */}
         <div className="hidden md:flex flex-1 items-center gap-8 justify-start">
           <NavLink href="/shop">Shop</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
         </div>
 
         {/* Logo (Center) */}
@@ -93,7 +95,7 @@ export default function Navbar({
             {/* We use a stylized text logo or an image logo based on what you have */}
             <div className="flex items-center text-foreground hover:text-[#a68038] transition-colors duration-300">
               <img
-                src="/Logo.PNG"
+                src="/Logo.png"
                 alt="Ceramika Logo"
                 className="h-6 sm:h-8 w-auto object-contain"
               />
@@ -103,7 +105,6 @@ export default function Navbar({
 
         {/* Right Actions & Links */}
         <div className="hidden md:flex flex-1 items-center gap-8 justify-end">
-          <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/about">About</NavLink>
 
           <div className="flex items-center gap-4 pl-4 border-l border-border/50">
@@ -189,8 +190,6 @@ export default function Navbar({
           >
             {[
               { label: "Shop", href: "/shop" },
-              { label: "Collections", href: "/collections" },
-              { label: "Sale", href: "/sale" },
               { label: "About", href: "/about" },
             ].map((link) => (
               <Link href={link.href} key={link.label} legacyBehavior>

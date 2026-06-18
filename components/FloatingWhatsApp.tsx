@@ -11,7 +11,6 @@ const MESSAGES = [
   'Chat with us!',
   'Need help?',
   'Order on WhatsApp',
-  'Response in < 10 min',
 ];
 
 export default function FloatingWhatsApp() {
@@ -65,7 +64,7 @@ export default function FloatingWhatsApp() {
                 <p className="text-foreground font-bold text-sm leading-none">CeramiKa</p>
                 <p className="text-[#25d366] text-[11px] flex items-center gap-1 mt-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#25d366] inline-block" />
-                  Online · Under 10 min reply
+                  Online
                 </p>
               </div>
             </div>

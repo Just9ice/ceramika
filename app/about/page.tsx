@@ -35,7 +35,7 @@ const TEAM = [
   role: "Customer Experience",
   initials: "NE",
   color: "#d97060",
-  bio: "The voice behind our WhatsApp. Ngozi handles every order, query, and follow-up. She's why our response time is under 10 minutes.",
+  bio: "The voice behind our WhatsApp. Ngozi handles every order, query, and follow-up.",
  },
 ];
 

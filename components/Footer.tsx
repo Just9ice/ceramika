@@ -13,22 +13,13 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
 });
 
-const SHOP_LINKS = [
+const FOOTER_LINKS = [
   { label: 'Shop All', href: '/shop' },
-  { label: 'Collections', href: '/collections' },
-  { label: 'Sale', href: '/sale' },
-];
-
-const COMPANY_LINKS = [
   { label: 'About Us', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Delivery Info', href: '/delivery' },
   { label: 'Privacy Policy', href: '/policy/privacy' },
   { label: 'Return Policy', href: '/policy/return' },
   { label: 'Terms', href: '/terms' },
 ];
-
-const PAYMENT_METHODS = ['Paystack', 'Flutterwave', 'Visa', 'Mastercard', 'Verve', 'Bank Transfer'];
 
 export default function Footer() {
   return (
@@ -65,15 +56,14 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Right Column: Links & Payment */}
-          <div className="grid grid-cols-2 gap-8 md:ml-auto">
-            {/* Shop & Company */}
+          {/* Right Column: Links */}
+          <div className="md:ml-auto">
             <motion.div {...fadeUp(0.1)}>
               <h4 className="text-foreground font-semibold tracking-widest text-xs mb-6 uppercase">
                 Links
               </h4>
               <ul className="flex flex-col gap-4">
-                {[...SHOP_LINKS, ...COMPANY_LINKS].map((l) => (
+                {FOOTER_LINKS.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
@@ -84,23 +74,6 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-
-            {/* Payment */}
-            <motion.div {...fadeUp(0.2)}>
-              <h4 className="text-foreground font-semibold tracking-widest text-xs mb-6 uppercase">
-                Payments
-              </h4>
-              <div className="flex flex-col gap-2">
-                {PAYMENT_METHODS.map((p) => (
-                  <span
-                    key={p}
-                    className="text-muted-foreground text-sm"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           </div>
         </div>

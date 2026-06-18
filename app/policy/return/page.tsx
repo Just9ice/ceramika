@@ -228,7 +228,7 @@ export default function ReturnPolicy() {
               <strong>Change of mind (unopened stock only)</strong> - subject to management approval, unopened cartons in original factory packaging may be considered for return. This is our sole discretion.
             </li>
             <li>
-              We aim to review and respond to all return requests within{" "} <strong>3 business days</strong> of receiving your request with all required information and photographs.
+              We aim to review and respond to all return requests promptly upon receiving your request with all required information and photographs.
             </li>
           </ul>
         </p>
@@ -306,9 +306,7 @@ export default function ReturnPolicy() {
       </p>
       <div className="info-box">
         <ul>
-          <li>
-            Refunds will be issues within <strong>5-7 business days</strong> of inspection sign-off.
-          </li>
+            Refunds will be issued after inspection sign-off.
           <li>
             Refunds are issued through <strong>same payment method</strong> used for the original purchase (bank transfer, Paystack, or Flutterwave).
           </li>
@@ -418,15 +416,6 @@ export default function ReturnPolicy() {
         >
           Start a Return Request on WhatsApp
         </a>
-        <p
-          style={{
-            marginTop: "8px",
-            fontSize: "0.75rem",
-            color: "rgba(200, 169, 110, 0.6)"
-          }}
-        >
-          Average response time: under 10 minutes during business hours
-        </p>
       </div>
 
     </LegalLayout>

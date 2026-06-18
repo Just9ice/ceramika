@@ -236,9 +236,7 @@ export default function TermsPage() {
       </p>
       <h3>Estimated delivery times</h3>
       <ul>
-        <li><strong>Lagos:</strong> 1–3 business days after dispatch.</li>
-        <li><strong>Abuja:</strong> 2–4 business days after dispatch.</li>
-        <li><strong>Other states:</strong> 3–7 business days after dispatch.</li>
+        <li><strong>Lagos, Abuja, and all other states:</strong> Delivery timelines depend on your location.</li>
         <li><strong>Showroom pickup (Victoria Island, Lagos):</strong> Same day, subject to stock availability.</li>
       </ul>
       <p>

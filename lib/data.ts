@@ -6,7 +6,7 @@ export interface Product {
   id: number;
   name: string;
   material: "Porcelain" | "Ceramic" | "Marble" | "Granite";
-  finish: "Glossy" | "Matte" | "Polished" | "Satin";
+  finish: string;
   room: "Bathroom" | "Kitchen" | "Floor" | "Wall" | "Outdoor";
   pricePerSqm: number;
   size: string;
@@ -16,8 +16,6 @@ export interface Product {
   description: string;
   cartonSqm: number;  // how many sqm come in one carton
   inStock: boolean;
-  rating: number;     // 1–5
-  reviewCount: number;
   image?: string;      // primary product photo path e.g. "/products/lagos-ivory.jpg"
   image2?: string;     // secondary photo shown on hover
 }
@@ -115,7 +113,7 @@ export const PRODUCTS: Product[] = [
     id: 1,
     name: "Lagos Ivory Marble",
     material: "Porcelain",
-    finish: "Glossy",
+    finish: "Marble",
     room: "Bathroom",
     pricePerSqm: 18500,
     size: "60×60cm",
@@ -126,8 +124,6 @@ export const PRODUCTS: Product[] = [
       "Luxurious ivory marble-effect porcelain with deep veining. Perfect for bathrooms and feature walls. Easy to clean and highly water resistant.",
     cartonSqm: 1.44,
     inStock: true,
-    rating: 4.9,
-    reviewCount: 87,
     image: '/NORWHICH_SAND_MATE.jpg',
     image2: '/Norwich_sand_mate_2.jpg'
   },
@@ -135,7 +131,7 @@ export const PRODUCTS: Product[] = [
     id: 2,
     name: "Abuja Slate Grey",
     material: "Ceramic",
-    finish: "Matte",
+    finish: "Travertine",
     room: "Floor",
     pricePerSqm: 12000,
     size: "80×80cm",
@@ -146,8 +142,6 @@ export const PRODUCTS: Product[] = [
       "Contemporary slate-effect ceramic with a refined matte finish. Slip-resistant and highly durable for high-traffic floor areas.",
     cartonSqm: 1.92,
     inStock: true,
-    rating: 4.7,
-    reviewCount: 43,
     image: '/slate-gray.jpg',
     image2: '/slate2.jpg'
   },
@@ -155,7 +149,7 @@ export const PRODUCTS: Product[] = [
     id: 3,
     name: "Enugu Forest Green",
     material: "Porcelain",
-    finish: "Matte",
+    finish: "Wood",
     room: "Kitchen",
     pricePerSqm: 22000,
     size: "60×120cm",
@@ -166,8 +160,6 @@ export const PRODUCTS: Product[] = [
       "Bold forest green large-format porcelain. Makes a dramatic statement in kitchens and open-plan spaces. Stain and scratch resistant.",
     cartonSqm: 1.44,
     inStock: true,
-    rating: 4.8,
-    reviewCount: 31,
     image: '/green2.jpg',
     image2: '/forest-green.jpg'
   },
@@ -175,7 +167,7 @@ export const PRODUCTS: Product[] = [
     id: 4,
     name: "Kano Desert Sand",
     material: "Ceramic",
-    finish: "Matte",
+    finish: "Cement",
     room: "Floor",
     pricePerSqm: 9500,
     size: "45×45cm",
@@ -185,8 +177,6 @@ export const PRODUCTS: Product[] = [
       "Warm desert sand tones with subtle texture. Affordable and versatile, suitable for living rooms, hallways, and outdoor terraces.",
     cartonSqm: 1.215,
     inStock: true,
-    rating: 4.5,
-    reviewCount: 128,
     image: '/desert-sand.jpg',
     image2: '/sand2.jpg'
   },
@@ -194,7 +184,7 @@ export const PRODUCTS: Product[] = [
     id: 5,
     name: "Port Harcourt Noir",
     material: "Marble",
-    finish: "Polished",
+    finish: "Brick Face",
     room: "Bathroom",
     pricePerSqm: 35000,
     size: "60×60cm",
@@ -205,8 +195,6 @@ export const PRODUCTS: Product[] = [
       "Genuine black marble with gold veining. The ultimate luxury statement for master bathrooms and hotel-grade finishes.",
     cartonSqm: 1.44,
     inStock: true,
-    rating: 5.0,
-    reviewCount: 19,
     image: '/noir2.jpg',
     image2: '/Noir.jpg'
   },
@@ -214,7 +202,7 @@ export const PRODUCTS: Product[] = [
     id: 6,
     name: "Ibadan Terracotta",
     material: "Ceramic",
-    finish: "Matte",
+    finish: "Rustic",
     room: "Kitchen",
     pricePerSqm: 11000,
     size: "30×60cm",
@@ -224,8 +212,6 @@ export const PRODUCTS: Product[] = [
       "Warm terracotta-inspired ceramic with handcrafted texture variation. Brings an authentic Nigerian aesthetic to kitchens and dining areas.",
     cartonSqm: 1.08,
     inStock: true,
-    rating: 4.6,
-    reviewCount: 55,
     image: '/terracotta.jpg',
     image2: '/terracotta2.jpg'
   },
@@ -233,7 +219,7 @@ export const PRODUCTS: Product[] = [
     id: 7,
     name: "Kaduna Arctic White",
     material: "Porcelain",
-    finish: "Glossy",
+    finish: "Mosaic",
     room: "Wall",
     pricePerSqm: 14500,
     size: "30×90cm",
@@ -244,8 +230,6 @@ export const PRODUCTS: Product[] = [
       "Pure arctic white high-gloss wall porcelain. Maximises light reflection in smaller spaces. Ideal for bathrooms, kitchens, and feature walls.",
     cartonSqm: 1.35,
     inStock: true,
-    rating: 4.7,
-    reviewCount: 22,
     image: '/white.jpg',
     image2: '/white2.jpg'
   },
@@ -253,7 +237,7 @@ export const PRODUCTS: Product[] = [
     id: 8,
     name: "Benin Bronze",
     material: "Ceramic",
-    finish: "Satin",
+    finish: "Basic",
     room: "Floor",
     pricePerSqm: 16000,
     size: "60×60cm",
@@ -264,8 +248,6 @@ export const PRODUCTS: Product[] = [
       "Rich bronze-toned ceramic inspired by Benin Kingdom artistry. A cultural statement piece with a sophisticated satin finish.",
     cartonSqm: 1.44,
     inStock: false,
-    rating: 4.8,
-    reviewCount: 14,
     image: '/bronze.jpg',
     image2: '/bronze2.jpg'
   },
@@ -273,7 +255,7 @@ export const PRODUCTS: Product[] = [
     id: 9,
     name: "Calabar Ocean Blue",
     material: "Porcelain",
-    finish: "Glossy",
+    finish: "Coloured Clay",
     room: "Bathroom",
     pricePerSqm: 19500,
     size: "30×60cm",
@@ -283,8 +265,6 @@ export const PRODUCTS: Product[] = [
       "Deep ocean blue glazed porcelain inspired by the Cross River. Brings a calming coastal energy to any bathroom or wet room.",
     cartonSqm: 1.08,
     inStock: true,
-    rating: 4.6,
-    reviewCount: 38,
     image: '/blue.jpg',
     image2: '/blue2.jpg'
   },
@@ -292,7 +272,7 @@ export const PRODUCTS: Product[] = [
     id: 10,
     name: "Ogun Granite Grey",
     material: "Granite",
-    finish: "Polished",
+    finish: "Marble",
     room: "Outdoor",
     pricePerSqm: 27000,
     size: "60×60cm",
@@ -303,8 +283,6 @@ export const PRODUCTS: Product[] = [
       "Natural granite quarried from Ogun State. Extremely durable, frost resistant, and ideal for driveways, patios, and outdoor spaces.",
     cartonSqm: 1.44,
     inStock: true,
-    rating: 4.9,
-    reviewCount: 29,
     image: '/slate-gray.jpg',
     image2: '/slate-gray2.jpg'
   },
@@ -312,7 +290,7 @@ export const PRODUCTS: Product[] = [
     id: 11,
     name: "Sokoto Rose Quartz",
     material: "Marble",
-    finish: "Polished",
+    finish: "Travertine",
     room: "Wall",
     pricePerSqm: 42000,
     size: "60×120cm",
@@ -323,8 +301,6 @@ export const PRODUCTS: Product[] = [
       "Rare rose quartz marble from northern Nigeria. Each slab is unique. Exclusively for high-end residential and hospitality projects.",
     cartonSqm: 1.44,
     inStock: true,
-    rating: 5.0,
-    reviewCount: 7,
     image: '/rose-quartz.jpg',
     image2: '/rose-quartz2.jpg'
   },
@@ -332,7 +308,7 @@ export const PRODUCTS: Product[] = [
     id: 12,
     name: "Ondo Olive Green",
     material: "Ceramic",
-    finish: "Matte",
+    finish: "Wood",
     room: "Kitchen",
     pricePerSqm: 10500,
     size: "15×60cm",
@@ -343,8 +319,6 @@ export const PRODUCTS: Product[] = [
       "Trending elongated format in earthy olive green. Perfect for kitchen splashbacks and bathroom walls. Currently on sale while stocks last.",
     cartonSqm: 0.9,
     inStock: true,
-    rating: 4.4,
-    reviewCount: 67,
     image: '/olive-green.jpg',
     image2: '/olive-green2.jpg'
   },
@@ -503,7 +477,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export const FAQS: FaqItem[] = [
   {
     q: "Do you deliver outside Lagos?",
-    a: "Yes! We deliver nationwide across Nigeria. Lagos and Abuja are typically 1–3 business days; other states take 3–7 days. Contact us on WhatsApp for a delivery quote.",
+    a: "Yes! We deliver nationwide across Nigeria. Contact us on WhatsApp for a delivery quote.",
     category: "Delivery",
   },
   {

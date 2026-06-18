@@ -14,7 +14,7 @@ const CHANNELS = [
     icon: "whatsapp",
     label: "WhatsApp",
     value: PHONE,
-    sub: "Fastest — under 10 min response",
+    sub: "Fastest way to reach us",
     href: waGeneralLink("Hello CeramiKa! I have an enquiry."),
     color: "#25d366",
     external: true,
@@ -32,7 +32,7 @@ const CHANNELS = [
     icon: "email",
     label: "Email",
     value: EMAIL,
-    sub: "We reply within 24 hours",
+    sub: "Send us a message",
     href: `mailto:${EMAIL}`,
     color: "#c8a96e",
     external: false,
@@ -82,12 +82,7 @@ function ChannelIcon({ type, className, style }: { type: string; className?: str
   );
 }
 
-const RESPONSE_TIMES = [
-  { channel: "WhatsApp", time: "Under 10 minutes", color: "#25d366" },
-  { channel: "Phone", time: "Immediately", color: "#c8a96e" },
-  { channel: "Email", time: "Within 24 hours", color: "#c8a96e" },
-  { channel: "Order updates", time: "At dispatch + delivery", color: "#c8a96e" },
-];
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -283,7 +278,7 @@ export default function ContactPage() {
                     Message sent!
                   </h3>
                   <p className="text-muted-foreground text-sm mb-6 max-w-xs mx-auto">
-                    Your enquiry has been opened on WhatsApp. We&apos;ll reply in under 10 minutes during business hours.
+                    Your enquiry has been opened on WhatsApp.
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", topic: "", message: "" }); }}
@@ -442,27 +437,7 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            {/* Response times */}
-            <motion.div
-              className="bg-card border border-border rounded-3xl p-5"
-              variants={fadeUp}
-              custom={2}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              <p className="text-muted-foreground text-xs uppercase tracking-widest mb-4">Response Times</p>
-              <div className="flex flex-col gap-3">
-                {RESPONSE_TIMES.map((r) => (
-                  <div key={r.channel} className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-sm">{r.channel}</span>
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ color: r.color, background: `${r.color}12`, border: `1px solid ${r.color}25` }}>
-                      {r.time}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+
 
             {/* Trade */}
             <motion.div

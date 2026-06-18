@@ -17,7 +17,6 @@ const DELIVERY_OPTIONS = [
   {
     icon: Truck,
     zone: "Lagos",
-    time: "1 - 3 business days",
     tag: "Fastest",
     tagColor: "#c8a96e",
     details: [
@@ -31,7 +30,6 @@ const DELIVERY_OPTIONS = [
   {
     icon: Plane,
     zone: "Abuja (FCT)",
-    time: "3 - 7 business days",
     tag: "Popular",
     tagColor: "#c8a96e",
     details: [
@@ -45,7 +43,6 @@ const DELIVERY_OPTIONS = [
   {
     icon: Package,
     zone: "Other States",
-    time: "5 - 10 business days",
     tag: "Nationwide",
     tagColor: "#c8a96e",
     details: [
@@ -58,7 +55,6 @@ const DELIVERY_OPTIONS = [
   {
     icon: Store,
     zone: "Showroom Pickup",
-    time: "Same day (if in stock)",
     tag: "Free",
     tagColor: "#25d366",
     details: [
@@ -564,7 +560,6 @@ export default function DeliveryPage() {
                     </div>
                     <div>
                       <h3 className="text-foreground font-bold text-base leading-tight">{opt.zone}</h3>
-                      <p className="text-muted-foreground text-sm mt-0.5">{opt.time}</p>
                     </div>
                   </div>
                   <span
@@ -614,9 +609,7 @@ export default function DeliveryPage() {
         >
           <span className="text-[#a68038] shrink-0 mt-0.5 text-base">ℹ</span>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            All timelines are estimates counted in{" "}
-            <strong className="text-foreground/65 font-semibold">business days (Mon–Sat)</strong>. Delays may
-            occur due to public holidays, weather, or logistics capacity. We always notify you via WhatsApp
+            Delays may occur due to public holidays, weather, or logistics capacity. We always notify you via WhatsApp
             if a delay is expected.
           </p>
         </motion.div>
@@ -686,7 +679,6 @@ export default function DeliveryPage() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { stat: "36", label: "States Covered", sub: "All of Nigeria" },
-                { stat: "1–3", label: "Lagos Days", sub: "After dispatch" },
                 { stat: "48hr", label: "Claim Window", sub: "Report on WhatsApp" },
                 { stat: "100%", label: "WA Tracked", sub: "Updates at every stage" },
               ].map((s, i) => (

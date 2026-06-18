@@ -2,7 +2,7 @@
 
 import { Product } from '@/lib/data';
 import { useRef, useState } from 'react';
-import StarRating from './ui/StarRating';
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -35,7 +35,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
     <motion.div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group flex flex-col h-full w-full relative rounded-3xl overflow-hidden border border-border bg-card shadow-sm"
+      className="group flex flex-col h-full w-full relative overflow-hidden border border-border bg-card shadow-sm"
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
       style={{ boxShadow: hovered ? '0 12px 40px rgba(0,0,0,0.1), 0 0 0 1px var(--color-border)' : undefined }}
@@ -119,17 +119,13 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </Link>
         
         <p className="text-muted-foreground text-xs mb-3 font-sans">
-          {product.size} <span className="mx-1">·</span> {product.material}
+          {product.size}
         </p>
 
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center mt-auto">
           <span className="text-foreground font-sans text-sm font-semibold">
             ₦{product.pricePerSqm.toLocaleString()} / sqm
           </span>
-          <div className="flex items-center gap-1">
-             <StarRating rating={product.rating} />
-             <span className="text-muted-foreground text-[10px]">({product.reviewCount})</span>
-          </div>
         </div>
       </div>
     </motion.div>
