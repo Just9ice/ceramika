@@ -518,14 +518,14 @@ export default function Home() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm"
+            className="inline-flex items-center gap-2.5 bg-[#25d366] text-foreground font-black px-9 py-4 rounded-full text-sm text-white/85"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 0 40px rgba(37,211,102,0.3)",
             }}
             whileTap={{ scale: 0.97 }}
           >
-            <WhatsAppIcon className="w-5 h-5" /> Chat with Our Team
+            <WhatsAppIcon className="w-5 h-5 text-white" /> Chat with Our Team
           </motion.a>
         </div>
       </section>
