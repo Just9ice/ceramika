@@ -70,8 +70,6 @@ export default function Navbar({
     return () => document.removeEventListener("click", handleClickOutside);
   }, [menuOpen]);
 
-
-
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}

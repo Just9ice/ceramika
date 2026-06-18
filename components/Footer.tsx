@@ -30,7 +30,7 @@ export default function Footer() {
           {/* Left Column: Brand & Contact */}
           <motion.div {...fadeUp(0)} className="flex flex-col">
             <Link href="/" className="inline-block mb-6 text-foreground hover:text-[#a68038] transition-colors duration-300">
-              <img src="/Logo.PNG" alt="Ceramika Logo" className="h-6 w-auto object-contain" />
+              <img src="/Logo.png" alt="Ceramika Logo" className="h-6 w-auto object-contain" />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
               Nigeria&apos;s premier destination for premium tiles and finishing materials. Trusted by homeowners, contractors, and architects nationwide.

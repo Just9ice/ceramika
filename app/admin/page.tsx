@@ -57,7 +57,6 @@ export default function AdminDashboard() {
          <th className="px-6 py-4">Image</th>
          <th className="px-6 py-4">Name</th>
          <th className="px-6 py-4">Price (₦)</th>
-         <th className="px-6 py-4">Tag</th>
          <th className="px-6 py-4">Stock</th>
          <th className="px-6 py-4 text-right">Actions</th>
         </tr>
@@ -66,7 +65,11 @@ export default function AdminDashboard() {
         {products.map((product) => (
          <tr key={product.id} className="hover:bg-muted/30 transition-colors">
           <td className="px-6 py-4">
-           <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${product.gradient} border border-border/50 shrink-0`}></div>
+           {product.image ? (
+             <img src={product.image} alt={product.name} className="w-10 h-10 rounded-lg object-cover shrink-0 border border-border/50" />
+           ) : (
+             <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${product.gradient} border border-border/50 shrink-0`}></div>
+           )}
           </td>
           <td className="px-6 py-4 font-semibold text-foreground">
            {editingId === product.id ? (
@@ -89,26 +92,6 @@ export default function AdminDashboard() {
             />
            ) : (
              `₦${product.pricePerSqm.toLocaleString()}`
-           )}
-          </td>
-          <td className="px-6 py-4">
-           {editingId === product.id ? (
-            <select
-             className="bg-input border border-border rounded px-2 py-1 text-sm focus:border-accent outline-none"
-             value={formData.tag || ''}
-             onChange={e => setFormData({ ...formData, tag: e.target.value as Product['tag'] })}
-            >
-             <option value="">None</option>
-             <option value="Bestseller">Bestseller</option>
-             <option value="Sale">Sale</option>
-             <option value="New">New</option>
-             <option value="Premium">Premium</option>
-             <option value="Luxury">Luxury</option>
-            </select>
-           ) : (
-            <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${product.tag ? 'border border-border bg-muted text-foreground' : 'text-muted-foreground'}`}>
-             {product.tag || 'No Tag'}
-            </span>
            )}
           </td>
            <td className="px-6 py-4">
