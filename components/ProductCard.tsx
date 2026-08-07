@@ -2,7 +2,6 @@
 
 import { Product } from '@/lib/data';
 import { useRef, useState } from 'react';
-
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -13,17 +12,40 @@ interface ProductCardProps {
 
 const TAG_STYLES: Record<string, { bg: string; color: string; border: string }> = {
   Bestseller: { bg: 'rgba(200,169,110,0.12)', color: 'var(--color-accent)', border: 'rgba(200,169,110,0.3)' },
-  New:    { bg: 'rgba(59,130,246,0.12)', color: '#3b82f6', border: 'rgba(59,130,246,0.3)' },
-  Premium:  { bg: 'rgba(168,85,247,0.12)', color: '#a855f7', border: 'rgba(168,85,247,0.3)' },
-  Luxury:   { bg: 'rgba(212,175,55,0.12)', color: '#d4af37', border: 'rgba(212,175,55,0.3)' },
-  Sale:    { bg: 'rgba(239,68,68,0.12)',  color: '#ef4444', border: 'rgba(239,68,68,0.3)'  },
+  New:        { bg: 'rgba(59,130,246,0.12)',  color: '#3b82f6',            border: 'rgba(59,130,246,0.3)'  },
+  Premium:    { bg: 'rgba(168,85,247,0.12)',  color: '#a855f7',            border: 'rgba(168,85,247,0.3)'  },
+  Luxury:     { bg: 'rgba(212,175,55,0.12)',  color: '#d4af37',            border: 'rgba(212,175,55,0.3)'  },
+  Sale:       { bg: 'rgba(239,68,68,0.12)',   color: '#ef4444',            border: 'rgba(239,68,68,0.3)'   },
+};
+
+// Map backend "effect" values to a soft gradient fallback colour
+const EFFECT_GRADIENT: Record<string, string> = {
+  'MARBLE':       'from-stone-100 to-stone-200',
+  'TRAVERTINE':   'from-amber-50  to-stone-100',
+  'WOOD':         'from-amber-100 to-yellow-50',
+  'CEMENT':       'from-slate-200 to-gray-100',
+  'STONE':        'from-gray-200  to-slate-100',
+  'COLORED CLAY': 'from-orange-100 to-amber-50',
+  'BRICK FACE':   'from-red-100   to-orange-50',
+  'RUSTIC':       'from-orange-200 to-yellow-100',
+  'MOSAIC':       'from-cyan-100  to-blue-50',
+  'BASIC':        'from-zinc-100  to-gray-50',
+  'GRANITE':      'from-gray-300  to-stone-200',
 };
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered]       = useState(false);
   const [addedFlash, setAddedFlash] = useState(false);
+  // imgError tracks whether the primary Cloudinary image failed to load
+  const [imgError, setImgError]     = useState(false);
   const imageRef = useRef<HTMLDivElement | null>(null);
   const tagStyle = product.tag ? TAG_STYLES[product.tag] : null;
+
+  // Gradient fallback: use product.gradient first, then effect-based, then a neutral default
+  const fallbackGradient =
+    product.gradient ||
+    EFFECT_GRADIENT[(product.effect || '').toUpperCase()] ||
+    'from-stone-100 to-stone-200';
 
   function handleAddToCart() {
     onAddToCart(product, imageRef.current);
@@ -49,29 +71,35 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         }}
       />
 
-      {/* ── Tile swatch / image (now on top) ───────────────── */}
+      {/* ── Tile swatch / image ───────────────── */}
       <div
         ref={imageRef}
-        className="relative w-full aspect-[4/5] overflow-hidden bg-muted"
+        className={`relative w-full aspect-[4/5] overflow-hidden bg-gradient-to-br ${fallbackGradient}`}
       >
         {/* Clickable link overlay */}
-        <Link href={`/product/${product.id}`} className="absolute inset-0 z-[5]" />
+        <Link href={`/product/${product.sku || product.id}`} className="absolute inset-0 z-[5]" />
 
-        {/* Primary image */}
-        <img
-          src={product.image}
-          alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out"
-          style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
-        />
-        {/* Secondary image (fade in on hover) */}
-        {product.image2 && (
+        {/* Primary image — hides itself on error, showing the gradient behind */}
+        {product.image && !imgError && (
           <img
-            src={product.image2}
+            src={product.image}
             alt={product.name}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-            style={{ opacity: hovered ? 1 : 0 }}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out"
+            style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
+            onError={() => setImgError(true)}
           />
+        )}
+
+        {/* Gradient overlay text when no image */}
+        {imgError && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 pointer-events-none">
+            <div className="w-12 h-12 border-2 border-current/20 rounded-sm flex items-center justify-center opacity-30">
+              <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current opacity-60">
+                <path d="M21 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"/>
+              </svg>
+            </div>
+            <span className="text-[10px] uppercase tracking-widest opacity-40 font-medium">{product.finish}</span>
+          </div>
         )}
 
         {/* Out of stock badge */}
@@ -83,7 +111,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           </div>
         )}
 
-        {/* Tag badge (Top right) */}
+        {/* Sale tag badge */}
         {product.tag === 'Sale' && tagStyle && (
           <div className="absolute top-3 right-3 bg-red-50 px-2 py-1 z-10 border border-red-100">
             <span className="text-red-600 text-[10px] uppercase font-semibold tracking-widest">
@@ -110,22 +138,24 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </motion.div>
       </div>
 
-      {/* ── Info section (now at bottom) ────────────────────── */}
+      {/* ── Info section ────────────────────── */}
       <div className="p-4 flex flex-col flex-grow bg-card">
-        <Link href={`/product/${product.id}`} className="group-hover:opacity-80 transition-opacity">
+        <Link href={`/product/${product.sku || product.id}`} className="group-hover:opacity-80 transition-opacity">
           <h3 className="font-serif text-lg text-foreground mb-1">
             {product.name}
           </h3>
         </Link>
-        
-        <p className="text-muted-foreground text-xs mb-3 font-sans">
-          {product.size}
-        </p>
 
-        <div className="flex items-center mt-auto">
+        <p className="text-muted-foreground text-xs mb-1 font-sans">{product.size}</p>
+        <p className="text-muted-foreground text-[10px] mb-3 font-sans uppercase tracking-wider">{product.finish}</p>
+
+        <div className="flex items-center justify-between mt-auto">
           <span className="text-foreground font-sans text-sm font-semibold">
             ₦{product.pricePerSqm.toLocaleString()} / sqm
           </span>
+          {product.stockSqm > 0 && (
+            <span className="text-[10px] text-green-600 font-medium">{product.stockSqm.toFixed(0)} sqm left</span>
+          )}
         </div>
       </div>
     </motion.div>

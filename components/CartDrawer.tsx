@@ -2,18 +2,20 @@
 
 import React, { useState } from 'react'
 import { CartItem, WA_NUMBER } from '@/lib/data'
+import { submitWhatsAppCheckout } from '@/lib/api';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface CartDrawerProps {
   items: CartItem[];
   onClose: () => void;
-  onRemove: (id: number) => void;
+  onRemove: (id: string) => void;
 }
 
 export default function CartDrawer({ items, onClose, onRemove }: CartDrawerProps) {
   const total = items.reduce((sum, i) => sum + i.sqm * i.pricePerSqm, 0);
   const [isCheckout, setIsCheckout] = useState(false);
+  const [loading, setLoading] = useState(false);
   
   // KYC Form State
   const [formData, setFormData] = useState({
@@ -25,36 +27,61 @@ export default function CartDrawer({ items, onClose, onRemove }: CartDrawerProps
     dispatchLocation: ''
   });
 
-  const handleCheckout = (e: React.FormEvent) => {
+  const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Build Invoice
-    const lines = items.map(
-      (i) => `• ${i.name} — ${i.sqm} sqm × ₦${i.pricePerSqm.toLocaleString()} = ₦${(i.sqm * i.pricePerSqm).toLocaleString()}`
-    );
-    
-    const invoiceText = [
-      `*NEW ORDER INVOICE*`,
-      ``,
-      `*Customer Details:*`,
-      `Name: ${formData.name}`,
-      `Phone: ${formData.phone}`,
-      `Email: ${formData.email || 'N/A'}`,
-      `Home Address: ${formData.homeAddress || 'N/A'}`,
-      `Office Address: ${formData.officeAddress || 'N/A'}`,
-      `*Dispatch To:* ${formData.dispatchLocation}`,
-      ``,
-      `*Order Items:*`,
-      ...lines,
-      ``,
-      `*Total Due: ₦${total.toLocaleString()}*`,
-      ``,
-      `Please confirm availability and arrange payment.`,
-    ].join('\n');
+    setLoading(true);
 
-    const uri = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(invoiceText)}`;
-    window.open(uri, '_blank');
-    onClose(); // Optional: clear cart logic can go here.
+    try {
+      // Send to backend endpoint
+      const payload = {
+        customer_name: formData.name,
+        customer_phone: formData.phone,
+        cart_items: items.map((i) => ({
+          sku: i.sku || i.id,
+          name: i.name,
+          cartons: Math.ceil(i.sqm / (i.cartonSqm || 1.44)),
+          price_per_carton: Math.round(i.pricePerSqm * (i.cartonSqm || 1.44)),
+        })),
+      };
+
+      const res = await submitWhatsAppCheckout(payload);
+      if (res.whatsapp_url) {
+        window.open(res.whatsapp_url, '_blank');
+      } else {
+        throw new Error('No WhatsApp URL returned');
+      }
+    } catch (err) {
+      console.warn('API checkout failed, falling back to direct WhatsApp link:', err);
+      // Fallback to client-side WhatsApp link
+      const lines = items.map(
+        (i) => `• ${i.name} — ${i.sqm} sqm × ₦${i.pricePerSqm.toLocaleString()} = ₦${(i.sqm * i.pricePerSqm).toLocaleString()}`
+      );
+      
+      const invoiceText = [
+        `*NEW ORDER INVOICE*`,
+        ``,
+        `*Customer Details:*`,
+        `Name: ${formData.name}`,
+        `Phone: ${formData.phone}`,
+        `Email: ${formData.email || 'N/A'}`,
+        `Home Address: ${formData.homeAddress || 'N/A'}`,
+        `Office Address: ${formData.officeAddress || 'N/A'}`,
+        `*Dispatch To:* ${formData.dispatchLocation}`,
+        ``,
+        `*Order Items:*`,
+        ...lines,
+        ``,
+        `*Total Due: ₦${total.toLocaleString()}*`,
+        ``,
+        `Please confirm availability and arrange payment.`,
+      ].join('\n');
+
+      const uri = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(invoiceText)}`;
+      window.open(uri, '_blank');
+    } finally {
+      setLoading(false);
+      onClose();
+    }
   };
 
   return (

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import CartDrawer from "@/components/CartDrawer";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, waGeneralLink } from "@/lib/data";
+import { waGeneralLink, Product } from "@/lib/data";
+import { fetchProducts } from "@/lib/api";
 import { useCart } from "@/components/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
@@ -76,22 +77,36 @@ function FilterSection({
   );
 }
 
-// Extract unique filter options from PRODUCTS
-const sizes = Array.from(new Set(PRODUCTS.map((p) => p.size))).sort();
-const EFFECTS_OPTIONS = [
-  "Coloured Clay",
-  "Marble",
-  "Travertine",
-  "Wood",
-  "Cement",
-  "Brick Face",
-  "Rustic",
-  "Mosaic",
-  "Basic",
-];
-
 export default function ShopPage() {
   const { cart, addToCart, cartOpen, setCartOpen, removeFromCart } = useCart();
+
+  // Products from API
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load products:", err);
+        setError("Failed to load products. Please try again.");
+        setLoading(false);
+      });
+  }, []);
+
+  // Derive filter options dynamically from fetched products
+  const sizes = useMemo(
+    () => Array.from(new Set(products.map((p) => p.size))).sort(),
+    [products]
+  );
+  const effectsOptions = useMemo(
+    () => Array.from(new Set(products.map((p) => p.finish))).sort(),
+    [products]
+  );
 
   // Filter States
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -99,14 +114,14 @@ export default function ShopPage() {
 
   // Filtering Logic
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    return products.filter((p) => {
       if (selectedSizes.length > 0 && !selectedSizes.includes(p.size))
         return false;
       if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish))
         return false;
       return true;
     });
-  }, [selectedSizes, selectedEffects]);
+  }, [products, selectedSizes, selectedEffects]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col pt-20">
@@ -125,9 +140,8 @@ export default function ShopPage() {
             Shop all tiles
           </h1>
           <p className="text-muted-foreground text-sm max-w-2xl leading-relaxed">
-            A small, well-edited range of premium porcelain, marble, ceramic,
-            and granite. Use the filters to narrow by size, material, finish and
-            setting — much of it is reduced while stock lasts.
+            Browse our full range of {products.length} premium Spanish porcelain tiles.
+            Use the filters to narrow by size and effect — much of it is reduced while stock lasts.
           </p>
         </div>
 
@@ -142,7 +156,7 @@ export default function ShopPage() {
             />
             <FilterSection
               title="Effects"
-              options={EFFECTS_OPTIONS}
+              options={effectsOptions}
               state={selectedEffects}
               stateUpdater={setSelectedEffects}
             />
@@ -154,7 +168,29 @@ export default function ShopPage() {
               <span>{filteredProducts.length} TILES</span>
             </div>
 
-            {filteredProducts.length === 0 ? (
+            {loading ? (
+              /* Loading skeleton */
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <div key={i} className="animate-pulse">
+                    <div className="aspect-[4/5] bg-muted rounded mb-4" />
+                    <div className="h-4 bg-muted rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-muted rounded w-1/2 mb-2" />
+                    <div className="h-4 bg-muted rounded w-1/3" />
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <div className="py-20 text-center border border-border/50 rounded-3xl bg-card">
+                <p className="text-foreground/50 mb-4">{error}</p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="text-primary hover:underline text-sm font-semibold"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : filteredProducts.length === 0 ? (
               <div className="py-20 text-center border border-border/50 rounded-3xl bg-card">
                 <p className="text-foreground/50">
                   No products match your selected filters.

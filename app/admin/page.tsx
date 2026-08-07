@@ -1,16 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
-import { PRODUCTS, Product } from "@/lib/data";
+import { Product } from "@/lib/data";
+import { fetchProducts } from "@/lib/api";
 
 export default function AdminDashboard() {
- const [products, setProducts] = useState<Product[]>(PRODUCTS);
- const [editingId, setEditingId] = useState<number | null>(null);
+ const [products, setProducts] = useState<Product[]>([]);
+ const [loading, setLoading] = useState(true);
+ const [editingId, setEditingId] = useState<string | null>(null);
 
  // Form State for editing / adding
  const [formData, setFormData] = useState<Partial<Product>>({});
+
+ useEffect(() => {
+   fetchProducts()
+     .then((data) => {
+       setProducts(data);
+       setLoading(false);
+     })
+     .catch((err) => {
+       console.error("Failed to load products:", err);
+       setLoading(false);
+     });
+ }, []);
 
  const handleEdit = (product: Product) => {
   setEditingId(product.id);
@@ -25,7 +39,7 @@ export default function AdminDashboard() {
   setFormData({});
  };
 
- const handleDelete = (id: number) => {
+ const handleDelete = (id: string) => {
   setProducts(prev => prev.filter(p => p.id !== id));
  };
 
@@ -39,99 +53,79 @@ export default function AdminDashboard() {
    <Navbar cartCount={0} onCartOpen={() => {}} />
 
    <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div className="flex items-center justify-between mb-8 border-b border-border/50 pb-6">
+    <div className="flex justify-between items-center mb-8 border-b border-border pb-6">
      <div>
-      <h1 className="text-3xl font-black text-foreground" style={{ fontFamily: "'Georgia', serif" }}>Admin Dashboard</h1>
-      <p className="text-muted-foreground text-sm mt-1">Manage your inventory, prices, and bestsellers. (UI Mockup for Backend Devs)</p>
+      <h1 className="text-3xl font-black text-foreground mb-2" style={{ fontFamily: "'Georgia', serif" }}>
+       Admin Product Management
+      </h1>
+      <p className="text-muted-foreground text-sm">
+       View, edit, or manage products fetched live from the backend database.
+      </p>
      </div>
-     <button onClick={handleAddNew} className="bg-[#25d366] hover:bg-[#1fb859] text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-sm transition-colors">
+     <button
+      onClick={handleAddNew}
+      className="bg-[#c8a96e] hover:bg-[#d4b87e] text-[#0f1a12] font-black text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition-all"
+     >
       + Add New Product
      </button>
     </div>
 
-    <div className="bg-card border border-border shadow-sm rounded-2xl overflow-hidden">
-     <div className="overflow-x-auto">
-      <table className="w-full text-left text-sm text-muted-foreground">
-       <thead className="bg-muted text-xs uppercase font-bold text-foreground/70 border-b border-border">
-        <tr>
-         <th className="px-6 py-4">Image</th>
-         <th className="px-6 py-4">Name</th>
-         <th className="px-6 py-4">Price (₦)</th>
-         <th className="px-6 py-4">Stock</th>
-         <th className="px-6 py-4 text-right">Actions</th>
-        </tr>
-       </thead>
-       <tbody className="divide-y divide-border/50">
-        {products.map((product) => (
-         <tr key={product.id} className="hover:bg-muted/30 transition-colors">
-          <td className="px-6 py-4">
-           {product.image ? (
-             <img src={product.image} alt={product.name} className="w-10 h-10 rounded-lg object-cover shrink-0 border border-border/50" />
-           ) : (
-             <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${product.gradient} border border-border/50 shrink-0`}></div>
-           )}
-          </td>
-          <td className="px-6 py-4 font-semibold text-foreground">
-           {editingId === product.id ? (
-            <input
-             className="w-full bg-input border border-border rounded px-2 py-1 text-sm focus:border-accent outline-none"
-             value={formData.name || ''}
-             onChange={e => setFormData({ ...formData, name: e.target.value })}
-            />
-           ) : (
-            product.name
-           )}
-          </td>
-          <td className="px-6 py-4">
-            {editingId === product.id ? (
-            <input
-             type="number"
-             className="w-24 bg-input border border-border rounded px-2 py-1 text-sm focus:border-accent outline-none"
-             value={formData.pricePerSqm || 0}
-             onChange={e => setFormData({ ...formData, pricePerSqm: Number(e.target.value) })}
-            />
-           ) : (
-             `₦${product.pricePerSqm.toLocaleString()}`
-           )}
-          </td>
-           <td className="px-6 py-4">
-           {editingId === product.id ? (
-            <input
-             type="checkbox"
-             className="w-4 h-4 rounded focus:ring-accent accent-primary"
-             checked={formData.inStock}
-             onChange={e => setFormData({ ...formData, inStock: e.target.checked })}
-            />
-           ) : (
-             <span className={product.inStock ? 'text-green-500 font-semibold' : 'text-red-500 font-semibold'}>
-              {product.inStock ? 'In Stock' : 'Out of Stock'}
+    {loading ? (
+      <div className="text-center py-20">
+        <p className="text-muted-foreground text-sm animate-pulse">Loading backend inventory...</p>
+      </div>
+    ) : (
+      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
+       <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm">
+         <thead className="bg-muted/50 text-muted-foreground text-xs uppercase tracking-wider border-b border-border">
+          <tr>
+           <th className="p-4">SKU / ID</th>
+           <th className="p-4">Product Name</th>
+           <th className="p-4">Effect</th>
+           <th className="p-4">Size</th>
+           <th className="p-4">Price (₦/sqm)</th>
+           <th className="p-4">Stock (sqm)</th>
+           <th className="p-4 text-right">Actions</th>
+          </tr>
+         </thead>
+         <tbody className="divide-y divide-border">
+          {products.map((p) => (
+           <tr key={p.id} className="hover:bg-muted/30 transition-colors">
+            <td className="p-4 font-mono text-xs text-muted-foreground">{p.sku || p.id}</td>
+            <td className="p-4 font-semibold text-foreground">{p.name}</td>
+            <td className="p-4 text-muted-foreground">{p.finish}</td>
+            <td className="p-4 text-muted-foreground font-mono text-xs">{p.size}</td>
+            <td className="p-4 font-semibold text-[#c8a96e]">₦{p.pricePerSqm.toLocaleString()}</td>
+            <td className="p-4">
+             <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${p.inStock ? 'bg-green-500/10 text-green-600' : 'bg-red-500/10 text-red-600'}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${p.inStock ? 'bg-green-500' : 'bg-red-500'}`} />
+              {p.inStock ? `${p.stockSqm.toFixed(0)} sqm` : 'Out of Stock'}
              </span>
-           )}
-          </td>
-          <td className="px-6 py-4 text-right">
-           {editingId === product.id ? (
-             <button onClick={handleSave} className="text-xs font-bold bg-[#25d366] hover:bg-[#1fb859] text-white px-3 py-1.5 rounded-lg transition-colors">
-              Save
-             </button>
-           ) : (
-            <div className="flex items-center justify-end gap-3">
-              <button onClick={() => handleEdit(product)} className="text-xs font-bold text-accent hover:underline">
+            </td>
+            <td className="p-4 text-right space-x-2">
+             <button
+              onClick={() => handleEdit(p)}
+              className="text-xs font-semibold text-muted-foreground hover:text-foreground px-3 py-1.5 rounded border border-border"
+             >
               Edit
              </button>
-             <button onClick={() => handleDelete(product.id)} className="text-xs font-bold text-destructive hover:underline">
+             <button
+              onClick={() => handleDelete(p.id)}
+              className="text-xs font-semibold text-red-500 hover:text-red-600 px-3 py-1.5 rounded border border-red-200 hover:border-red-300"
+             >
               Delete
              </button>
-            </div>
-           )}
-          </td>
-         </tr>
-        ))}
-       </tbody>
-      </table>
-     </div>
-    </div>
+            </td>
+           </tr>
+          ))}
+         </tbody>
+        </table>
+       </div>
+      </div>
+    )}
    </main>
-   
+
    <Footer />
   </div>
  );

@@ -3,26 +3,33 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface Product {
-  id: number;
+  id: string;
+  sku: string;
   name: string;
-  material: "Porcelain" | "Ceramic" | "Marble" | "Granite";
+  material: string;
   finish: string;
-  room: "Bathroom" | "Kitchen" | "Floor" | "Wall" | "Outdoor";
+  effect: string;
+  room: string;
   pricePerSqm: number;
+  pricePerSqmVat: number;
   size: string;
   tag?: "Bestseller" | "New" | "Premium" | "Luxury" | "Sale";
   gradient: string;   // Tailwind gradient classes e.g. "from-stone-200 to-amber-100"
   accent: string;     // hex colour for tag text and highlights
   description: string;
   cartonSqm: number;  // how many sqm come in one carton
+  piecesPerCarton: number;
+  weightPerCartonKg: number;
+  stockSqm: number;
   inStock: boolean;
-  image?: string;      // primary product photo path e.g. "/products/lagos-ivory.jpg"
+  image?: string;      // primary product photo URL
   image2?: string;     // secondary photo shown on hover
 }
 
 export interface CartItem extends Product {
   sqm: number; // quantity the user wants, in square metres
 }
+
 
 export interface Project {
   id: number;
@@ -105,224 +112,9 @@ export function waGeneralLink(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PRODUCTS  (replace with CMS / API fetch in production)
+// PRODUCTS — now fetched from the backend API via lib/api.ts
+// See: fetchProducts() in lib/api.ts
 // ─────────────────────────────────────────────────────────────────────────────
-
-export const PRODUCTS: Product[] = [
-  {
-    id: 1,
-    name: "Lagos Ivory Marble",
-    material: "Porcelain",
-    finish: "Marble",
-    room: "Bathroom",
-    pricePerSqm: 18500,
-    size: "120 x 120",
-    tag: "Bestseller",
-    gradient: "from-stone-200 to-amber-100",
-    accent: "#c8a96e",
-    description:
-      "Luxurious ivory marble-effect porcelain with deep veining. Perfect for bathrooms and feature walls. Easy to clean and highly water resistant.",
-    cartonSqm: 1.44,
-    inStock: true,
-    image: '/NORWHICH_SAND_MATE.jpg',
-    image2: '/Norwich_sand_mate_2.jpg'
-  },
-  {
-    id: 2,
-    name: "Abuja Slate Grey",
-    material: "Ceramic",
-    finish: "Travertine",
-    room: "Floor",
-    pricePerSqm: 12000,
-    size: "120 x 280 x 0.6",
-    tag: "New",
-    gradient: "from-slate-300 to-gray-200",
-    accent: "#6b7280",
-    description:
-      "Contemporary slate-effect ceramic with a refined matte finish. Slip-resistant and highly durable for high-traffic floor areas.",
-    cartonSqm: 1.92,
-    inStock: true,
-    image: '/slate-gray.jpg',
-    image2: '/slate2.jpg'
-  },
-  {
-    id: 3,
-    name: "Enugu Forest Green",
-    material: "Porcelain",
-    finish: "Wood",
-    room: "Kitchen",
-    pricePerSqm: 22000,
-    size: "60 x 120",
-    tag: "Premium",
-    gradient: "from-emerald-200 to-teal-100",
-    accent: "#059669",
-    description:
-      "Bold forest green large-format porcelain. Makes a dramatic statement in kitchens and open-plan spaces. Stain and scratch resistant.",
-    cartonSqm: 1.44,
-    inStock: true,
-    image: '/green2.jpg',
-    image2: '/forest-green.jpg'
-  },
-  {
-    id: 4,
-    name: "Kano Desert Sand",
-    material: "Ceramic",
-    finish: "Cement",
-    room: "Floor",
-    pricePerSqm: 9500,
-    size: "33 x 33",
-    gradient: "from-amber-200 to-yellow-100",
-    accent: "#d97706",
-    description:
-      "Warm desert sand tones with subtle texture. Affordable and versatile, suitable for living rooms, hallways, and outdoor terraces.",
-    cartonSqm: 1.215,
-    inStock: true,
-    image: '/desert-sand.jpg',
-    image2: '/sand2.jpg'
-  },
-  {
-    id: 5,
-    name: "Port Harcourt Noir",
-    material: "Marble",
-    finish: "Brick Face",
-    room: "Bathroom",
-    pricePerSqm: 35000,
-    size: "17 x 52",
-    tag: "Luxury",
-    gradient: "from-zinc-800 to-neutral-700",
-    accent: "#d4af37",
-    description:
-      "Genuine black marble with gold veining. The ultimate luxury statement for master bathrooms and hotel-grade finishes.",
-    cartonSqm: 1.44,
-    inStock: true,
-    image: '/noir2.jpg',
-    image2: '/Noir.jpg'
-  },
-  {
-    id: 6,
-    name: "Ibadan Terracotta",
-    material: "Ceramic",
-    finish: "Rustic",
-    room: "Kitchen",
-    pricePerSqm: 11000,
-    size: "15 x 31.6",
-    gradient: "from-orange-200 to-red-100",
-    accent: "#ea580c",
-    description:
-      "Warm terracotta-inspired ceramic with handcrafted texture variation. Brings an authentic Nigerian aesthetic to kitchens and dining areas.",
-    cartonSqm: 1.08,
-    inStock: true,
-    image: '/terracotta.jpg',
-    image2: '/terracotta2.jpg'
-  },
-  {
-    id: 7,
-    name: "Kaduna Arctic White",
-    material: "Porcelain",
-    finish: "Mosaic",
-    room: "Wall",
-    pricePerSqm: 14500,
-    size: "0.53",
-    tag: "New",
-    gradient: "from-white to-slate-100",
-    accent: "#94a3b8",
-    description:
-      "Pure arctic white high-gloss wall porcelain. Maximises light reflection in smaller spaces. Ideal for bathrooms, kitchens, and feature walls.",
-    cartonSqm: 1.35,
-    inStock: true,
-    image: '/white.jpg',
-    image2: '/white2.jpg'
-  },
-  {
-    id: 8,
-    name: "Benin Bronze",
-    material: "Ceramic",
-    finish: "Basic",
-    room: "Floor",
-    pricePerSqm: 16000,
-    size: "7 x 28",
-    tag: "Premium",
-    gradient: "from-yellow-700 to-amber-600",
-    accent: "#92400e",
-    description:
-      "Rich bronze-toned ceramic inspired by Benin Kingdom artistry. A cultural statement piece with a sophisticated satin finish.",
-    cartonSqm: 1.44,
-    inStock: false,
-    image: '/bronze.jpg',
-    image2: '/bronze2.jpg'
-  },
-  {
-    id: 9,
-    name: "Calabar Ocean Blue",
-    material: "Porcelain",
-    finish: "Coloured Clay",
-    room: "Bathroom",
-    pricePerSqm: 19500,
-    size: "60 x 60",
-    gradient: "from-blue-300 to-cyan-200",
-    accent: "#0891b2",
-    description:
-      "Deep ocean blue glazed porcelain inspired by the Cross River. Brings a calming coastal energy to any bathroom or wet room.",
-    cartonSqm: 1.08,
-    inStock: true,
-    image: '/blue.jpg',
-    image2: '/blue2.jpg'
-  },
-  {
-    id: 10,
-    name: "Ogun Granite Grey",
-    material: "Granite",
-    finish: "Marble",
-    room: "Outdoor",
-    pricePerSqm: 27000,
-    size: "20 x 60",
-    tag: "Premium",
-    gradient: "from-gray-500 to-stone-400",
-    accent: "#78716c",
-    description:
-      "Natural granite quarried from Ogun State. Extremely durable, frost resistant, and ideal for driveways, patios, and outdoor spaces.",
-    cartonSqm: 1.44,
-    inStock: true,
-    image: '/slate-gray.jpg',
-    image2: '/slate-gray2.jpg'
-  },
-  {
-    id: 11,
-    name: "Sokoto Rose Quartz",
-    material: "Marble",
-    finish: "Travertine",
-    room: "Wall",
-    pricePerSqm: 42000,
-    size: "45 x 45",
-    tag: "Luxury",
-    gradient: "from-pink-200 to-rose-100",
-    accent: "#e11d48",
-    description:
-      "Rare rose quartz marble from northern Nigeria. Each slab is unique. Exclusively for high-end residential and hospitality projects.",
-    cartonSqm: 1.44,
-    inStock: true,
-    image: '/rose-quartz.jpg',
-    image2: '/rose-quartz2.jpg'
-  },
-  {
-    id: 12,
-    name: "Ondo Olive Green",
-    material: "Ceramic",
-    finish: "Wood",
-    room: "Kitchen",
-    pricePerSqm: 10500,
-    size: "47 x 47",
-    tag: "Sale",
-    gradient: "from-lime-200 to-green-100",
-    accent: "#65a30d",
-    description:
-      "Trending elongated format in earthy olive green. Perfect for kitchen splashbacks and bathroom walls. Currently on sale while stocks last.",
-    cartonSqm: 0.9,
-    inStock: true,
-    image: '/olive-green.jpg',
-    image2: '/olive-green2.jpg'
-  },
-];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PROJECTS

@@ -6,7 +6,7 @@ import { CartItem, Product } from "@/lib/data";
 interface CartContextType {
  cart: CartItem[];
  addToCart: (product: Product, sourceEl?: HTMLElement | null) => void;
- removeFromCart: (id: number) => void;
+ removeFromCart: (id: string) => void;
  cartOpen: boolean;
  setCartOpen: (open: boolean) => void;
 }
@@ -49,7 +49,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Optional animation logic here if we centralize animateFlyToCart
  }
 
- function removeFromCart(id: number) {
+ function removeFromCart(id: string) {
   setCart((prev) => prev.filter((i) => i.id !== id));
  }
 

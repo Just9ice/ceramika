@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, use } from "react";
-import { PRODUCTS, CartItem, waProductLink, waGeneralLink } from "@/lib/data";
+import { useState, useEffect, use } from "react";
+import { CartItem, waProductLink, waGeneralLink, Product } from "@/lib/data";
+import { fetchProducts } from "@/lib/api";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -12,7 +13,9 @@ import Link from "next/link";
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
-  const product = PRODUCTS.find((p) => p.id === Number(resolvedParams.id));
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -25,6 +28,35 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const [calcRes, setCalcRes] = useState<{
     sqm: number; withWaste: number; cartons: number; total: number;
   } | null>(null);
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load product:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  // Find product by SKU (the URL param is the SKU)
+  const product = products.find((p) => p.id === resolvedParams.id || p.sku === resolvedParams.id);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center pt-24">
+        <Navbar cartCount={0} onCartOpen={() => {}} />
+        <div className="text-center">
+          <div className="animate-pulse">
+            <div className="w-16 h-16 bg-muted rounded-full mx-auto mb-4" />
+            <div className="h-4 bg-muted rounded w-32 mx-auto" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -62,8 +94,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     setCalcRes({ sqm: base, withWaste, cartons, total });
   }
 
-  const related = PRODUCTS.filter(
-    (p) => p.id !== product.id && (p.room === product.room || p.material === product.material)
+  const related = products.filter(
+    (p) => p.id !== product.id && (p.finish === product.finish || p.size === product.size)
   ).slice(0, 4);
 
   const isDarkSwatch =
@@ -200,6 +232,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                   value: product.inStock,
                   isStock: true
                 },
+                {
+                  label: "Pcs/Carton",
+                  value: `${product.piecesPerCarton}`
+                },
+                {
+                  label: "Weight/Carton",
+                  value: `${product.weightPerCartonKg} kg`
+                },
               ].map((s) => (
                 <div
                   key={s.label}
@@ -209,7 +249,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                   {s.isStock ? (
                       <p className="text-foreground text-sm font-semibold flex items-center gap-2">
                          <span className={`w-2 h-2 rounded-full ${s.value ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                         {s.value ? "In Stock" : "Out of Stock"}
+                         {s.value ? `In Stock (${product.stockSqm.toFixed(0)} sqm)` : "Out of Stock"}
                       </p>
                   ) : (
                     <p className="text-foreground text-sm font-semibold">{s.value as string}</p>
@@ -230,6 +270,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 ₦{product.pricePerSqm.toLocaleString()}
               </span>
               <span className="text-muted-foreground text-sm ml-2">per sqm</span>
+              {product.pricePerSqmVat > 0 && product.pricePerSqmVat !== product.pricePerSqm && (
+                <span className="text-muted-foreground text-xs ml-2">(₦{product.pricePerSqmVat.toLocaleString()} incl. VAT)</span>
+              )}
             </div>
 
             {/* SQM selector + Add to cart */}

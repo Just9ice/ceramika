@@ -1,0 +1,282 @@
+[
+  {
+    "targetSku": "PRSCE61LMBRWH1A",
+    "sourcePath": "products/PRSCE61LMBRGRG2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61LMBRGRG2A",
+    "sourcePath": "products/PRSCE61LMBRGRG2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61LMBRWHPL2A",
+    "sourcePath": "products/PRSCE61LMBRWH1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61LMBRGRGPL2A",
+    "sourcePath": "products/PRSCE61LMBRGRG2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HALOWHTMT2A",
+    "sourcePath": "products/PRSCK61HALOWHTMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HALOWHTPL2A",
+    "sourcePath": "products/PRSCK61HALOWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCK61HALOWHTPL2A",
+    "sourcePath": "products/PRSCK61HALOWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCK61HALOWHTMT2A",
+    "sourcePath": "products/PRSCK61HALOWHTMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HALOINMT2A",
+    "sourcePath": "products/PRSCE61HALOWHTMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HNLKINV2A",
+    "sourcePath": "products/PRSCE44HNLKINMT1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HNLKSND2A",
+    "sourcePath": "products/PRSCE44HNLKSNDMT1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HNLKINPL2A",
+    "sourcePath": "products/PRSCE44HNLKINMT1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61HNLKSNDPL2A",
+    "sourcePath": "products/PRSCE44HNLKSNDMT1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ISCHIALGHT2A",
+    "sourcePath": "products/PRSCE61ISCHIALGHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ISCHIASND2A",
+    "sourcePath": "products/PRSCE61ISCHIASNDPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ISCHIALGHTPL2A",
+    "sourcePath": "products/PRSCE61ISCHIALGHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ISCHIASNDPL2A",
+    "sourcePath": "products/PRSCE61ISCHIASNDPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBIANT1A",
+    "sourcePath": "products/PRSCE66KOBIGRYMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBICRMT2A",
+    "sourcePath": "products/PRSCE66KOBICRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBIGRGMT2A",
+    "sourcePath": "products/PRSCE66KOBIGRGMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBIGRYMT2A",
+    "sourcePath": "products/PRSCE66KOBIGRYMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBIIVRMT2A",
+    "sourcePath": "products/PRSCE66KOBIIVRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBIIVRPL2A",
+    "sourcePath": "products/PRSCE66KOBIIVRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61KOBICRMPL2A",
+    "sourcePath": "products/PRSCE66KOBICRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE66KOBICRMT2A",
+    "sourcePath": "products/PRSCE61KOBICRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE66KOBIGRGMT2A",
+    "sourcePath": "products/PRSCE61KOBIGRGMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE66KOBIGRYMT2A",
+    "sourcePath": "products/PRSCE61KOBIGRYMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE66KOBIIVRMT2A",
+    "sourcePath": "products/PRSCE61KOBIIVRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61MILOSWHTMT2A",
+    "sourcePath": "products/PRSCE44MILOSWHTMT1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61MILOSWHTPL2A",
+    "sourcePath": "products/PRSCE44MILOSWHTPL1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61MILOSWHTPL2A-2",
+    "sourcePath": "products/PRSCE44MILOSWHTPL1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ORNTWHT2A",
+    "sourcePath": "products/PRSCE61ORNTWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCK61ORNTWHTPL2A",
+    "sourcePath": "products/PRSCE61ORNTWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61ORNTWHTPL2A",
+    "sourcePath": "products/PRSCE61ORNTWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61TNDRCRMT2A",
+    "sourcePath": "products/PRSCE61TNDRCRMPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61TNDRGRYMT2A",
+    "sourcePath": "products/PRSCE61TNDRCRMPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61TNDRCRMPL2A",
+    "sourcePath": "products/PRSCE61TNDRCRMPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61CRSLGHTMT2A",
+    "sourcePath": "products/PRSCE61CRSLGHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE61CRSLGHTPL2A",
+    "sourcePath": "products/PRSCE61CRSLGHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE26LMBRWH1A",
+    "sourcePath": "products/PRSCE61LMBRWH1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE26LMBRGRG1A",
+    "sourcePath": "products/PRSCE61LMBRGRG2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE66LMBRWH1A",
+    "sourcePath": "products/PRSCE61LMBRWH1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44HNLKINMT1A",
+    "sourcePath": "products/PRSCE61HNLKINV2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44HNLKINPL1A",
+    "sourcePath": "products/PRSCE61HNLKINV2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44HNLKSNDMT1A",
+    "sourcePath": "products/PRSCE61HNLKSND2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44HNLKSNDPL1A",
+    "sourcePath": "products/PRSCE61HNLKSND2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44KOBIIVRMT1A",
+    "sourcePath": "products/PRSCE61KOBIIVRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44KOBICRMMT1A",
+    "sourcePath": "products/PRSCE61KOBICRMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44KOBIGRYMT1A",
+    "sourcePath": "products/PRSCE61KOBIGRYMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44MILOSWHTMT1A",
+    "sourcePath": "products/PRSCE61MILOSWHTMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE44MILOSWHTPL1A",
+    "sourcePath": "products/PRSCE61MILOSWHTPL2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCK44IVRYHILLMT1A",
+    "sourcePath": "products/PRSCE61LMBRWH1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE72BRICKBLA1A",
+    "sourcePath": "products/PRSCE61LMBRWH1A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE72BRICKGRA1A",
+    "sourcePath": "products/PRSCE66KOBIGRYMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE47PISCGRS1A",
+    "sourcePath": "products/PRSCE66KOBIGRGMT2A",
+    "reason": "source_not_found"
+  },
+  {
+    "targetSku": "PRSCE47PISCAZU1A",
+    "sourcePath": "products/PRSCE47PISCGRS1A",
+    "reason": "source_not_found"
+  }
+]

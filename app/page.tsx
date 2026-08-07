@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import CartDrawer from "@/components/CartDrawer";
 import { useState } from "react";
-import { PRODUCTS, waGeneralLink, Product } from "@/lib/data";
+import { waGeneralLink, Product } from "@/lib/data";
 import { useCart } from "@/components/CartContext";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -57,7 +57,7 @@ export default function Home() {
         <div className="absolute inset-0">
           {/* We use a relevant image from public, or just fallback to hero-main */}
           <img
-            src="/living-room.jpg"
+            src="https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/living-room.jpg"
             className="w-full h-full object-cover bg-gradient-to-b from-white/90 via-black/30 to-black/60"
             alt="Hero Background"
           />
@@ -192,8 +192,9 @@ export default function Home() {
           {[
             {
               id: "1",
-              name: "Marfil Cream",
-              image: "/mery_gold.jpg",
+              name: " Marfil Cream",
+              image:
+                "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCE61MERYGLDBR2A_main.jpg",
               discount: "35% off",
               size: "60×120 CM • MATTE",
               oldPrice: "18,500",
@@ -203,7 +204,8 @@ export default function Home() {
             {
               id: "2",
               name: "Grafito Charcoal",
-              image: "/Madrazo_Black.jpg",
+              image:
+                "https://res.cloudinary.com/dpsufnobu/image/upload/products/BTPC72MDRZBLCK1A_main.jpg",
               discount: "30% off",
               size: "60×60 CM • SATIN",
               oldPrice: "21,000",
@@ -213,7 +215,8 @@ export default function Home() {
             {
               id: "3",
               name: "Arena Sand",
-              image: "/Ambiente_Bonova_Sand.jpg",
+              image:
+                "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCK44BONOSAND1A_env.jpg",
               discount: "32% off",
               size: "60×60 CM • MATTE",
               oldPrice: "14,500",
@@ -223,7 +226,8 @@ export default function Home() {
             {
               id: "4",
               name: "Terracota Clay",
-              image: "/porcelanico_albarracin_cotto_mate.jpg",
+              image:
+                "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/terracotta.jpg",
               discount: "35% off",
               size: "90×90 CM • MATTE",
               oldPrice: "24,000",
@@ -271,7 +275,27 @@ export default function Home() {
               {idx !== 3 ? (
                 <button
                   onClick={() =>
-                    handleAddToCartLocal(PRODUCTS[idx] || PRODUCTS[0])
+                    handleAddToCartLocal({
+                      id: item.id,
+                      sku: item.id,
+                      name: item.name,
+                      material: "Porcelain",
+                      finish: "Matte",
+                      effect: "Stone",
+                      room: "Floor",
+                      pricePerSqm: parseInt(item.newPrice.replace(/,/g, "")),
+                      pricePerSqmVat: parseInt(item.newPrice.replace(/,/g, "")),
+                      size: item.size,
+                      gradient: "from-stone-200 to-amber-100",
+                      accent: "#c8a96e",
+                      description: item.name,
+                      cartonSqm: 1.44,
+                      piecesPerCarton: 2,
+                      weightPerCartonKg: 34,
+                      stockSqm: 100,
+                      inStock: true,
+                      image: item.image,
+                    })
                   }
                   className="w-full bg-transparent border border-border/70 py-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#333] hover:border-[#c19b6e] hover:text-[#c19b6e] transition-colors"
                 >

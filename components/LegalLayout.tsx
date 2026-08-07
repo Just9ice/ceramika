@@ -33,7 +33,7 @@ export default function LegalLayout({
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
 
-  function removeFromCart(id: number) {
+  function removeFromCart(id: string) {
     setCart((prev) => prev.filter((i) => i.id !== id));
   }
 
