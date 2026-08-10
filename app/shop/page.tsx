@@ -17,62 +17,91 @@ function FilterSection({
   options,
   state,
   stateUpdater,
+  defaultOpen = true,
 }: {
   title: string;
   options: string[];
   state: string[];
   stateUpdater: React.Dispatch<React.SetStateAction<string[]>>;
+  defaultOpen?: boolean;
 }) {
+  const [open, setOpen] = React.useState(defaultOpen);
+
   return (
-    <div className="mb-8">
-      <h4 className="text-sm font-black tracking-widest uppercase mb-4 text-foreground/80">
-        {title}
-      </h4>
-      <div className="space-y-3">
-        {options.map((opt) => (
-          <label
-            key={opt}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
-            <input
-              type="checkbox"
-              className="sr-only"
-              checked={state.includes(opt)}
-              onChange={() => {
-                stateUpdater((prev) =>
-                  prev.includes(opt)
-                    ? prev.filter((i) => i !== opt)
-                    : [...prev, opt],
-                );
-              }}
-            />
-            <div
-              className={`w-4 h-4 border rounded flex items-center justify-center transition-colors ${state.includes(opt) ? "bg-primary border-primary" : "border-border group-hover:border-primary/50"}`}
-            >
-              {state.includes(opt) && (
-                <svg
-                  className="w-3 h-3 text-primary-foreground"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              )}
-            </div>
-            <span
-              className={`text-sm ${state.includes(opt) ? "text-foreground font-semibold" : "text-muted-foreground group-hover:text-foreground"}`}
-            >
-              {opt}
+    <div className="mb-4 border border-border/50 rounded-xl overflow-hidden">
+      {/* Dropdown header */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between px-4 py-3 bg-card hover:bg-muted/40 transition-colors"
+      >
+        <span className="text-sm font-black tracking-widest uppercase text-foreground/80">
+          {title}
+          {state.length > 0 && (
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary text-[10px] text-primary-foreground font-bold">
+              {state.length}
             </span>
-          </label>
-        ))}
-      </div>
+          )}
+        </span>
+        <svg
+          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {/* Collapsible body */}
+      {open && (
+        <div className="px-4 py-3 space-y-3 bg-background">
+          {options.map((opt) => (
+            <label
+              key={opt}
+              className="flex items-center gap-3 cursor-pointer group"
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={state.includes(opt)}
+                onChange={() => {
+                  stateUpdater((prev) =>
+                    prev.includes(opt)
+                      ? prev.filter((i) => i !== opt)
+                      : [...prev, opt],
+                  );
+                }}
+              />
+              <div
+                className={`w-4 h-4 border rounded flex items-center justify-center transition-colors ${state.includes(opt) ? "bg-primary border-primary" : "border-border group-hover:border-primary/50"}`}
+              >
+                {state.includes(opt) && (
+                  <svg
+                    className="w-3 h-3 text-primary-foreground"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={3}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
+              </div>
+              <span
+                className={`text-sm ${state.includes(opt) ? "text-foreground font-semibold" : "text-muted-foreground group-hover:text-foreground"}`}
+              >
+                {opt}
+              </span>
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -98,11 +127,22 @@ export default function ShopPage() {
       });
   }, []);
 
-  // Derive filter options dynamically from fetched products
-  const sizes = useMemo(
-    () => Array.from(new Set(products.map((p) => p.size))).sort(),
-    [products]
-  );
+  // Normalise a size string: replace uppercase X separators with lowercase x,
+  // then remove the invalid "0.53" entry, and deduplicate (case-insensitive).
+  const sizes = useMemo(() => {
+    const seen = new Map<string, string>(); // normalised key → display value
+    for (const p of products) {
+      const raw = p.size ?? "";
+      // Replace stand-alone uppercase X (used as dimension separator) with lowercase x.
+      // The regex targets X surrounded by digits / dots, not letters (e.g. "120X120" → "120x120").
+      const normalised = raw.replace(/(\d[.,]?\d*)X(\d)/g, "$1x$2");
+      const key = normalised.toLowerCase();
+      if (key === "0.53" || key === "") continue; // skip invalid entry
+      if (!seen.has(key)) seen.set(key, normalised);
+    }
+    return Array.from(seen.values()).sort();
+  }, [products]);
+
   const effectsOptions = useMemo(
     () => Array.from(new Set(products.map((p) => p.finish))).sort(),
     [products]
@@ -112,11 +152,14 @@ export default function ShopPage() {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<string[]>([]);
 
-  // Filtering Logic
+  // Filtering Logic – match against normalised size so filtered products align
+  // with the normalised labels shown in the sidebar.
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
-      if (selectedSizes.length > 0 && !selectedSizes.includes(p.size))
-        return false;
+      if (selectedSizes.length > 0) {
+        const normalisedSize = (p.size ?? "").replace(/(\d[.,]?\d*)X(\d)/g, "$1x$2");
+        if (!selectedSizes.includes(normalisedSize)) return false;
+      }
       if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish))
         return false;
       return true;
