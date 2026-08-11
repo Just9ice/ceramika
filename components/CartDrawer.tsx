@@ -242,7 +242,7 @@ export default function CartDrawer({ items, onClose, onRemove }: CartDrawerProps
             ) : (
               <button
                 onClick={handleCheckout}
-                disabled={!formData.name || !formData.phone || !formData.dispatchLocation}
+                disabled={loading || !formData.name || !formData.phone || !formData.dispatchLocation}
                 className="flex items-center justify-center gap-2 w-full py-4 bg-[#25d366] disabled:bg-[#25d366]/50 text-white font-black tracking-widest text-sm uppercase rounded-xl transition-all active:scale-[0.98] shadow-md hover:bg-[#1fb859]"
               >
                 <WhatsAppIcon className="w-5 h-5" />

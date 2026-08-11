@@ -126,6 +126,16 @@ function effectAccent(effect: string): string {
 // ── Transform API product → frontend Product ───────────────────────────────
 
 function transformProduct(api: ApiProduct): Product {
+  let size = api.size || "";
+  
+  // Fix known data issue for PIETRA BEIGE where size is '0.53'
+  if (size === "0.53" && api.name.includes("15X31.6")) {
+    size = "15x31.6";
+  }
+  
+  // Normalize commas to dots and X to x
+  size = size.replace(/(\d[.,]?\d*)x(\d)/gi, "$1x$2").replace(/,/g, ".");
+
   return {
     id: api.sku, // Use SKU as the unique ID (human-readable, SEO-friendly)
     name: api.name,
@@ -136,10 +146,10 @@ function transformProduct(api: ApiProduct): Product {
     room: "Floor", // Default; could be enriched later
     pricePerSqm: api.price_per_sqm,
     pricePerSqmVat: api.price_per_sqm_vat,
-    size: api.size,
+    size: size,
     gradient: effectGradient(api.effect),
     accent: effectAccent(api.effect),
-    description: `${api.name} — ${api.size} porcelain tile with ${mapEffectToFinish(api.effect).toLowerCase()} effect. Premium quality Spanish porcelain.`,
+    description: `${api.name} — ${size} porcelain tile with ${mapEffectToFinish(api.effect).toLowerCase()} effect. Premium quality Spanish porcelain.`,
     cartonSqm: api.sqm_per_carton,
     piecesPerCarton: api.pieces_per_carton,
     weightPerCartonKg: api.weight_per_carton_kg,

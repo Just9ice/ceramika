@@ -2,7 +2,6 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
 
 const NavLink = ({
@@ -44,9 +43,6 @@ export default function Navbar({
   cartCount: number;
   onCartOpen: () => void;
 }) {
-  const pathname = usePathname();
-  const { scrollY } = useScroll();
-
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 

@@ -35,7 +35,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   localStorage.setItem("ceramika-cart", JSON.stringify(cart));
  }, [cart]);
 
- function addToCart(product: Product, _sourceEl?: HTMLElement | null) {
+ function addToCart(product: Product) {
   setCart((prev) => {
    const existing = prev.find((i) => i.id === product.id);
    if (existing) {

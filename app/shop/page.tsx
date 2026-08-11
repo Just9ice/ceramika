@@ -127,20 +127,12 @@ export default function ShopPage() {
       });
   }, []);
 
-  // Normalise a size string: replace uppercase X separators with lowercase x,
-  // then remove the invalid "0.53" entry, and deduplicate (case-insensitive).
   const sizes = useMemo(() => {
-    const seen = new Map<string, string>(); // normalised key → display value
+    const seen = new Set<string>();
     for (const p of products) {
-      const raw = p.size ?? "";
-      // Replace stand-alone uppercase X (used as dimension separator) with lowercase x.
-      // The regex targets X surrounded by digits / dots, not letters (e.g. "120X120" → "120x120").
-      const normalised = raw.replace(/(\d[.,]?\d*)X(\d)/g, "$1x$2");
-      const key = normalised.toLowerCase();
-      if (key === "0.53" || key === "") continue; // skip invalid entry
-      if (!seen.has(key)) seen.set(key, normalised);
+      if (p.size) seen.add(p.size);
     }
-    return Array.from(seen.values()).sort();
+    return Array.from(seen).sort();
   }, [products]);
 
   const effectsOptions = useMemo(
@@ -152,16 +144,11 @@ export default function ShopPage() {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<string[]>([]);
 
-  // Filtering Logic – match against normalised size so filtered products align
-  // with the normalised labels shown in the sidebar.
+  // Filtering Logic
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
-      if (selectedSizes.length > 0) {
-        const normalisedSize = (p.size ?? "").replace(/(\d[.,]?\d*)X(\d)/g, "$1x$2");
-        if (!selectedSizes.includes(normalisedSize)) return false;
-      }
-      if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish))
-        return false;
+      if (selectedSizes.length > 0 && (!p.size || !selectedSizes.includes(p.size))) return false;
+      if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish)) return false;
       return true;
     });
   }, [products, selectedSizes, selectedEffects]);

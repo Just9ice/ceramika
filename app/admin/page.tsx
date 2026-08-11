@@ -31,14 +31,6 @@ export default function AdminDashboard() {
   setFormData(product);
  };
 
- const handleSave = () => {
-  if (editingId) {
-   setProducts(prev => prev.map(p => p.id === editingId ? { ...p, ...formData } as Product : p));
-  }
-  setEditingId(null);
-  setFormData({});
- };
-
  const handleDelete = (id: string) => {
   setProducts(prev => prev.filter(p => p.id !== id));
  };
