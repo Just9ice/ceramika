@@ -9,6 +9,10 @@ import { fetchProducts } from "@/lib/api";
 export default function AdminDashboard() {
  const [products, setProducts] = useState<Product[]>([]);
  const [loading, setLoading] = useState(true);
+ // eslint-disable-next-line @typescript-eslint/no-unused-vars
+ const [editingId, setEditingId] = useState<string | null>(null);
+ // eslint-disable-next-line @typescript-eslint/no-unused-vars
+ const [formData, setFormData] = useState<Partial<Product>>({});
 
  useEffect(() => {
    fetchProducts()
