@@ -24,7 +24,7 @@ const FOOTER_LINKS = [
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
           {/* Left Column: Brand & Contact */}
@@ -81,14 +81,14 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-xs uppercase tracking-wider">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider text-center sm:text-left">
             © {new Date().getFullYear()} CeramiKa
           </p>
-          <div className="flex items-center gap-4 text-muted-foreground/60 text-xs uppercase tracking-wider">
+          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-muted-foreground/60 text-[10px] sm:text-xs uppercase tracking-wider">
             <span>All prices in NGN</span>
             <span className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">CAC Registered</span>
+            <span>CAC Registered</span>
           </div>
         </div>
       </div>

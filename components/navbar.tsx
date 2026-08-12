@@ -189,7 +189,7 @@ export default function Navbar({
               <Link href={link.href} key={link.label} legacyBehavior>
                 <a
                   onClick={() => setMenuOpen(false)}
-                  className="text-foreground/80 hover:text-accent font-semibold py-3 border-b border-border/50 text-sm tracking-widest uppercase transition-colors"
+                  className="text-foreground/80 hover:text-accent font-bold py-4 border-b border-border/50 text-base tracking-widest uppercase transition-colors"
                 >
                   {link.label}
                 </a>

@@ -53,7 +53,7 @@ export default function Home() {
       <Navbar cartCount={cart.length} onCartOpen={() => setCartOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-end sm:items-center pb-20 sm:pb-0 overflow-hidden bg-[#e0dacc]">
+      <section className="relative h-[100svh] min-h-[500px] flex items-end sm:items-center pb-20 sm:pb-0 overflow-hidden bg-[#e0dacc]">
         <div className="absolute inset-0">
           {/* We use a relevant image from public, or just fallback to hero-main */}
           <img
@@ -65,15 +65,15 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 w-full mt-32 sm:mt-0">
-          <p className="text-white/90 text-xs tracking-[0.25em] uppercase mb-6 drop-shadow-sm">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 w-full mt-32 sm:mt-0">
+          <p className="text-white/90 text-[10px] sm:text-xs tracking-[0.25em] uppercase mb-6 drop-shadow-sm">
             Selected stock - significantly reduced
           </p>
           <h1
             className="text-white leading-[1.05] mb-10 drop-shadow-sm font-normal"
             style={{
               fontFamily: "var(--font-cormorant), serif",
-              fontSize: "clamp(3.5rem, 7vw, 6rem)",
+              fontSize: "clamp(2.75rem, 8vw, 6rem)",
             }}
           >
             Up to 40% off
@@ -99,19 +99,19 @@ export default function Home() {
       </section>
 
       {/* Split Text Section */}
-      <section className="bg-[#fbfa8] py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
+      <section className="bg-[#fbfa8] py-20 sm:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 grid lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-24">
           <div>
-            <p className="text-[#c19b6e] text-xs font-semibold tracking-[0.2em] uppercase mt-2">
+            <p className="text-[#c19b6e] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase lg:mt-2">
               European quality. Lagos prices.
             </p>
           </div>
           <div>
             <h2
-              className="text-[#1a1a1a] font-normal leading-[1.25] mb-10 max-w-2xl"
+              className="text-[#1a1a1a] font-normal leading-[1.25] mb-8 lg:mb-10 max-w-2xl"
               style={{
                 fontFamily: "var(--font-cormorant), serif",
-                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                fontSize: "clamp(2rem, 5vw, 3.2rem)",
               }}
             >
               A curated edit of Spanish porcelain, chosen for taste rather than
@@ -135,12 +135,12 @@ export default function Home() {
       </section>
 
       {/* Browse By Section */}
-      <section className="bg-[#f2efe9] py-14 border-t border-border/40">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-          <h3 className="text-[#777] text-xs font-semibold tracking-[0.2em] uppercase shrink-0">
+      <section className="bg-[#f2efe9] py-10 md:py-14 border-t border-border/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+          <h3 className="text-[#777] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase shrink-0">
             Browse by
           </h3>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {[
               "On sale",
               "Matte finish",
@@ -163,9 +163,9 @@ export default function Home() {
       </section>
 
       {/* Sale Edit Section */}
-      <section className="bg-[#fbfa8] py-20 pb-32">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 mb-14">
-          <p className="text-[#c19b6e] text-xs font-semibold tracking-[0.2em] uppercase mb-4 mt-8">
+      <section className="bg-[#fbfa8] py-20 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 mb-10 lg:mb-14">
+          <p className="text-[#c19b6e] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-4 lg:mt-8">
             Best Sellers
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-border/50 pb-6 gap-4">
@@ -173,21 +173,21 @@ export default function Home() {
               className="text-[#1a1a1a] font-normal leading-[1.1]"
               style={{
                 fontFamily: "var(--font-cormorant), serif",
-                fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
               }}
             >
               Selected stock, significantly reduced
             </h2>
             <Link
               href="/shop"
-              className="text-xs font-semibold tracking-[0.2em] uppercase text-[#777] hover:text-[#c19b6e] transition-colors shrink-0"
+              className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#777] hover:text-[#c19b6e] transition-colors shrink-0"
             >
               View Best Sellers
             </Link>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
           {/* Custom structured cards based on screenshot */}
           {[
             {
@@ -321,7 +321,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
         SQM CALCULATOR
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative bg-background py-24 border-y border-border overflow-hidden">
+      <section className="relative bg-background py-20 lg:py-24 border-y border-border overflow-hidden">
         <div
           className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
           style={{
@@ -329,8 +329,8 @@ export default function Home() {
               "radial-gradient(circle at 80% 20%, rgba(200,169,110,0.06) 0%, transparent 70%)",
           }}
         ></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24">
+          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}

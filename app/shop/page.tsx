@@ -143,6 +143,7 @@ export default function ShopPage() {
   // Filter States
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<string[]>([]);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Filtering Logic
   const filteredProducts = useMemo(() => {
@@ -175,9 +176,38 @@ export default function ShopPage() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12">
-          {/* Sidebar */}
-          <aside className="w-full md:w-64 shrink-0">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
+          {/* Mobile Filter Toggle */}
+          <div className="md:hidden flex items-center justify-between pb-4 border-b border-border/50">
+            <span className="text-sm text-muted-foreground font-semibold">
+              {filteredProducts.length} TILES
+            </span>
+            <button
+              onClick={() => setMobileFiltersOpen(true)}
+              className="px-4 py-2 bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+              Filters
+            </button>
+          </div>
+
+          {/* Sidebar (Desktop) & Drawer (Mobile) */}
+          <aside className={`fixed inset-0 z-[100] bg-background md:bg-transparent md:static md:w-64 shrink-0 transition-transform duration-300 ${mobileFiltersOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+            <div className="flex flex-col h-full md:block">
+              {/* Mobile Filter Header */}
+              <div className="md:hidden flex items-center justify-between px-6 py-5 border-b border-border/50">
+                <h2 className="font-serif text-2xl font-black">Filters</h2>
+                <button onClick={() => setMobileFiltersOpen(false)} className="text-muted-foreground">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Filter Content */}
+              <div className="flex-1 overflow-y-auto p-6 md:p-0">
             <FilterSection
               title="Size"
               options={sizes}
@@ -190,18 +220,30 @@ export default function ShopPage() {
               state={selectedEffects}
               stateUpdater={setSelectedEffects}
             />
+              </div>
+              
+              {/* Mobile Filter Footer (Apply Button) */}
+              <div className="md:hidden p-6 border-t border-border/50">
+                <button
+                  onClick={() => setMobileFiltersOpen(false)}
+                  className="w-full py-4 bg-foreground text-background font-bold tracking-widest text-sm uppercase rounded"
+                >
+                  Apply Filters
+                </button>
+              </div>
+            </div>
           </aside>
 
           {/* Grid */}
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-6 text-sm text-muted-foreground">
+            <div className="hidden md:flex items-center justify-between mb-6 text-sm text-muted-foreground">
               <span>{filteredProducts.length} TILES</span>
             </div>
 
             {loading ? (
               /* Loading skeleton */
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {Array.from({ length: 9 }).map((_, i) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, i) => (
                   <div key={i} className="animate-pulse">
                     <div className="aspect-[4/5] bg-muted rounded mb-4" />
                     <div className="h-4 bg-muted rounded w-3/4 mb-2" />
@@ -236,7 +278,7 @@ export default function ShopPage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                 <AnimatePresence>
                   {filteredProducts.map((p) => (
                     <motion.div

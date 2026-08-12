@@ -122,15 +122,12 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
         {/* Quick Add overlay */}
         <motion.div
-          className="absolute bottom-3 left-3 right-3 z-20 flex"
-          initial={{ opacity: 0, y: 10 }}
-          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.2 }}
+          className="absolute bottom-3 left-3 right-3 z-20 flex md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
         >
           <motion.button
             onClick={handleAddToCart}
             disabled={!product.inStock}
-            className="w-full bg-foreground text-background py-3 text-xs font-semibold tracking-widest uppercase disabled:opacity-40 transition-colors hover:bg-[#a68038]"
+            className="w-full bg-foreground text-background py-3 text-[10px] sm:text-xs font-semibold tracking-widest uppercase disabled:opacity-40 transition-colors hover:bg-[#a68038]"
             whileTap={{ scale: 0.98 }}
           >
             {addedFlash ? '✓ Added' : 'Quick Add'}
@@ -141,13 +138,13 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
       {/* ── Info section ────────────────────── */}
       <div className="p-4 flex flex-col flex-grow bg-card">
         <Link href={`/product/${product.sku || product.id}`} className="group-hover:opacity-80 transition-opacity">
-          <h3 className="font-serif text-lg text-foreground mb-1">
+          <h3 className="font-serif text-base sm:text-lg text-foreground mb-1">
             {product.name}
           </h3>
         </Link>
 
-        <p className="text-muted-foreground text-xs mb-1 font-sans">{product.size}</p>
-        <p className="text-muted-foreground text-[10px] mb-3 font-sans uppercase tracking-wider">{product.finish}</p>
+        <p className="text-muted-foreground text-[10px] sm:text-xs mb-1 font-sans">{product.size}</p>
+        <p className="text-muted-foreground text-[9px] sm:text-[10px] mb-3 font-sans uppercase tracking-wider">{product.finish}</p>
 
         <div className="flex items-center justify-between mt-auto">
           <span className="text-foreground font-sans text-sm font-semibold">

@@ -9,10 +9,6 @@ import { fetchProducts } from "@/lib/api";
 export default function AdminDashboard() {
  const [products, setProducts] = useState<Product[]>([]);
  const [loading, setLoading] = useState(true);
- const [editingId, setEditingId] = useState<string | null>(null);
-
- // Form State for editing / adding
- const [formData, setFormData] = useState<Partial<Product>>({});
 
  useEffect(() => {
    fetchProducts()
