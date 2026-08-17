@@ -4,483 +4,150 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import CartDrawer from "@/components/CartDrawer";
-import { useState } from "react";
-import { waGeneralLink, Product } from "@/lib/data";
 import { useCart } from "@/components/CartContext";
+import { waGeneralLink } from "@/lib/data";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Calculator } from "lucide-react";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
-
 export default function Home() {
-  const { cart, addToCart, cartOpen, setCartOpen, removeFromCart } = useCart();
+  const { cart, removeFromCart, cartOpen, setCartOpen } = useCart();
 
-  const [calcLength, setCalcLength] = useState("");
-  const [calcWidth, setCalcWidth] = useState("");
-  const [calcPrice, setCalcPrice] = useState("");
-  const [calcResult, setCalcResult] = useState<{
-    sqm: number;
-    withWaste: number;
-    cartons: number;
-    total: number;
-  } | null>(null);
+  const clearanceImages = [
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCE61MERYGLDBR2A_main.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/BTPC72MDRZBLCK1A_main.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCK44BONOSAND1A_env.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/terracotta.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/living-room.jpg",
+  ];
 
-  function runCalculator() {
-    const l = parseFloat(calcLength);
-    const w = parseFloat(calcWidth);
-    const p = parseFloat(calcPrice);
-    if (!l || !w || !p) return;
-    const sqm = l * w;
-    const withWaste = sqm * 1.1;
-    const cartons = Math.ceil(withWaste / 1.44);
-    const total = withWaste * p;
-    setCalcResult({ sqm, withWaste, cartons, total });
-  }
-
-  const displayResult = calcResult ?? {
-    sqm: 0,
-    withWaste: 0,
-    cartons: 0,
-    total: 0,
-  };
-
-  function handleAddToCartLocal(product: Product) {
-    addToCart(product);
-  }
+  const newInImages = [
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/living-room.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCE61MERYGLDBR2A_main.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/BTPC72MDRZBLCK1A_main.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCK44BONOSAND1A_env.jpg",
+    "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/terracotta.jpg",
+  ];
 
   return (
-    <>
+    <div className="bg-white min-h-screen font-sans">
       <Navbar cartCount={cart.length} onCartOpen={() => setCartOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative h-[100svh] min-h-[500px] flex items-end sm:items-center pb-20 sm:pb-0 overflow-hidden bg-[#e0dacc]">
-        <div className="absolute inset-0">
-          {/* We use a relevant image from public, or just fallback to hero-main */}
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-start overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img
             src="https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/living-room.jpg"
-            className="w-full h-full object-cover bg-gradient-to-b from-white/90 via-black/30 to-black/60"
-            alt="Hero Background"
+            alt="Living room with beautiful tiles"
+            className="w-full h-full object-cover"
           />
-          {/* Subtle overlay to ensure text is readable based on the reference */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-black/60" />
+          <div className="absolute inset-0 bg-black/10" />
         </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 w-full mt-32 sm:mt-0">
-          <p className="text-white/90 text-[10px] sm:text-xs tracking-[0.25em] uppercase mb-6 drop-shadow-sm">
-            Selected stock - significantly reduced
-          </p>
-          <h1
-            className="text-white leading-[1.05] mb-10 drop-shadow-sm font-normal"
-            style={{
-              fontFamily: "var(--font-cormorant), serif",
-              fontSize: "clamp(2.75rem, 8vw, 6rem)",
-            }}
-          >
-            Up to 40% off
-            <br />
-            Spanish porcelain
-          </h1>
-
-          <div className="flex flex-row gap-4">
-            <Link
-              href="/sale"
-              className="px-8 py-3.5 bg-white text-[#111] text-xs font-semibold tracking-[0.15em] uppercase transition-colors hover:bg-gray-100 shadow-sm"
-            >
-              Shop the edit
-            </Link>
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-8 mt-10">
+          <div className="max-w-[600px]">
+            <h1 className="text-white text-[2.5rem] md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-4">
+              Quality Spanish tiles<br/>at the best rate
+            </h1>
+            <p className="text-white leading-relaxed text-base md:text-lg mb-8 max-w-[450px]">
+              Spanish-quality tiles selected for beautiful spaces, practical projects and better value.
+            </p>
             <Link
               href="/shop"
-              className="px-8 py-3.5 border border-white/60 text-white text-xs font-semibold tracking-[0.15em] uppercase transition-colors hover:bg-white/10"
+              className="inline-block bg-[#222] hover:bg-black text-white px-8 py-3 text-sm font-medium transition-colors"
             >
-              View all tiles
+              Shop now
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Split Text Section */}
-      <section className="bg-[#fbfa8] py-20 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 grid lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-24">
-          <div>
-            <p className="text-[#c19b6e] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase lg:mt-2">
-              European quality. Lagos prices.
-            </p>
-          </div>
-          <div>
-            <h2
-              className="text-[#1a1a1a] font-normal leading-[1.25] mb-8 lg:mb-10 max-w-2xl"
-              style={{
-                fontFamily: "var(--font-cormorant), serif",
-                fontSize: "clamp(2rem, 5vw, 3.2rem)",
-              }}
-            >
-              A curated edit of Spanish porcelain, chosen for taste rather than
-              turnover.
-            </h2>
-            <div className="text-[#555] text-sm md:text-base leading-relaxed max-w-xl space-y-6">
-              <p>
-                Ceramika is the sister brand to Muse Studio, our premium design
-                house. We bring the same considered eye to surfaces that happen
-                to cost less. Each tile here is genuine European stock —
-                selected, photographed in situ, and offered at a price that
-                makes good design quietly accessible.
-              </p>
-              <p>
-                No loud stickers. No tile-depot clutter. Just a small,
-                well-edited collection, reduced while it lasts.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Browse By Section */}
-      <section className="bg-[#f2efe9] py-10 md:py-14 border-t border-border/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-          <h3 className="text-[#777] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase shrink-0">
-            Browse by
-          </h3>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {[
-              "On sale",
-              "Matte finish",
-              "Large format",
-              "Outdoor",
-              "Cream & beige",
-              "Terracotta",
-              "Under ₦15,000",
-            ].map((label) => (
-              <Link
-                key={label}
-                href="/shop"
-                className="bg-[#fbfa8] px-6 py-3 text-xs text-[#333] border border-border/70 hover:border-[#c19b6e] transition-colors rounded-none shadow-sm"
-              >
-                {label}
-              </Link>
+      {/* Clearance Section */}
+      <section className="py-16">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <h2 className="text-xl md:text-2xl font-medium mb-6">Clearance</h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {clearanceImages.map((src, i) => (
+              <div key={`clearance-${i}`} className="aspect-square bg-gray-100 overflow-hidden">
+                <img src={src} alt="Clearance Tile" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Sale Edit Section */}
-      <section className="bg-[#fbfa8] py-20 lg:pb-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 mb-10 lg:mb-14">
-          <p className="text-[#c19b6e] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-4 lg:mt-8">
-            Best Sellers
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-border/50 pb-6 gap-4">
-            <h2
-              className="text-[#1a1a1a] font-normal leading-[1.1]"
-              style={{
-                fontFamily: "var(--font-cormorant), serif",
-                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-              }}
-            >
-              Selected stock, significantly reduced
-            </h2>
-            <Link
-              href="/shop"
-              className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#777] hover:text-[#c19b6e] transition-colors shrink-0"
-            >
-              View Best Sellers
-            </Link>
+      {/* New In Section */}
+      <section className="py-8 pb-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <h2 className="text-xl md:text-2xl font-medium mb-6">New in</h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {newInImages.map((src, i) => (
+              <div key={`newin-${i}`} className="aspect-square bg-gray-100 overflow-hidden">
+                <img src={src} alt="New In Tile" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
-          {/* Custom structured cards based on screenshot */}
-          {[
-            {
-              id: "1",
-              name: " Marfil Cream",
-              image:
-                "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCE61MERYGLDBR2A_main.jpg",
-              discount: "35% off",
-              size: "60×120 CM • MATTE",
-              oldPrice: "18,500",
-              newPrice: "11,900",
-              badgeBg: "#a87153",
-            },
-            {
-              id: "2",
-              name: "Grafito Charcoal",
-              image:
-                "https://res.cloudinary.com/dpsufnobu/image/upload/products/BTPC72MDRZBLCK1A_main.jpg",
-              discount: "30% off",
-              size: "60×60 CM • SATIN",
-              oldPrice: "21,000",
-              newPrice: "14,700",
-              badgeBg: "#a87153",
-            },
-            {
-              id: "3",
-              name: "Arena Sand",
-              image:
-                "https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCK44BONOSAND1A_env.jpg",
-              discount: "32% off",
-              size: "60×60 CM • MATTE",
-              oldPrice: "14,500",
-              newPrice: "9,900",
-              badgeBg: "#a87153",
-            },
-            {
-              id: "4",
-              name: "Terracota Clay",
-              image:
-                "https://res.cloudinary.com/dpsufnobu/image/upload/products_unmapped/terracotta.jpg",
-              discount: "35% off",
-              size: "90×90 CM • MATTE",
-              oldPrice: "24,000",
-              newPrice: "15,600",
-              badgeBg: "#a87153",
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="group relative">
-              <div className="relative aspect-square bg-[#ece8de] w-full mb-5 flex items-center justify-center p-6 sm:p-10 shadow-sm">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover shadow-md"
-                />
-                <div
-                  className="absolute top-2 left-2 text-[10px] text-white px-2 py-1 uppercase tracking-widest font-semibold"
-                  style={{ backgroundColor: item.badgeBg }}
-                >
-                  {item.discount}
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1 mb-5">
-                <div className="flex justify-between items-center">
-                  <h3
-                    className="text-[#1a1a1a] font-normal text-xl"
-                    style={{ fontFamily: "var(--font-cormorant), serif" }}
-                  >
-                    {item.name}
-                  </h3>
-                  <div className="text-right flex items-center gap-2">
-                    <span className="text-[#a0a0a0] text-xs line-through block">
-                      ₦{item.oldPrice}
-                    </span>
-                    <span className="text-[#c19b6e] text-sm font-semibold block">
-                      ₦{item.newPrice}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-[#888] text-[10px] tracking-widest uppercase">
-                  {item.size}
-                </p>
-              </div>
-
-              {idx !== 3 ? (
-                <button
-                  onClick={() =>
-                    handleAddToCartLocal({
-                      id: item.id,
-                      sku: item.id,
-                      name: item.name,
-                      material: "Porcelain",
-                      finish: "Matte",
-                      effect: "Stone",
-                      room: "Floor",
-                      pricePerSqm: parseInt(item.newPrice.replace(/,/g, "")),
-                      pricePerSqmVat: parseInt(item.newPrice.replace(/,/g, "")),
-                      size: item.size,
-                      gradient: "from-stone-200 to-amber-100",
-                      accent: "#c8a96e",
-                      description: item.name,
-                      cartonSqm: 1.44,
-                      piecesPerCarton: 2,
-                      weightPerCartonKg: 34,
-                      stockSqm: 100,
-                      inStock: true,
-                      image: item.image,
-                    })
-                  }
-                  className="w-full bg-transparent border border-border/70 py-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#333] hover:border-[#c19b6e] hover:text-[#c19b6e] transition-colors"
-                >
-                  Add to cart
-                </button>
-              ) : (
-                <a
-                  href={waGeneralLink(
-                    `Hello, I'd like to enquire about ${item.name}`,
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full block text-center bg-transparent border border-border/70 py-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#333] hover:border-[#c19b6e] hover:text-[#c19b6e] transition-colors"
-                >
-                  Enquire
-                </a>
-              )}
-            </div>
-          ))}
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-        SQM CALCULATOR
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative bg-background py-20 lg:py-24 border-y border-border overflow-hidden">
-        <div
-          className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 80% 20%, rgba(200,169,110,0.06) 0%, transparent 70%)",
-          }}
-        ></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24">
-          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div
-                className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border text-xs"
-                style={{
-                  borderColor: "rgba(200,169,110,0.25)",
-                  background: "rgba(200,169,110,0.06)",
-                  color: "#c8a96e",
-                }}
-              >
-                <Calculator className="w-3.5 h-3.5" /> Free Tool
-              </div>
-              <h2
-                className="text-foreground font-black leading-tight mb-4"
-                style={{
-                  fontFamily: "var(--font-cormorant), serif",
-                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                }}
-              >
-                SqM &amp; Cost
-                <br />
-                <span className="text-transparent [-webkit-text-stroke:1.5px_#a68038] opacity-90">
-                  Calculator.
-                </span>
+      {/* Contact Form Section */}
+      <section className="bg-[#562f3a] py-20 lg:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Left */}
+            <div className="flex flex-col">
+              <h2 className="text-white text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-tight mb-4 tracking-tight">
+                Need help selecting a tile?
               </h2>
-              <p className="text-foreground/80 leading-relaxed mb-7 text-sm max-w-md">
-                Enter your room dimensions. We&apos;ll calculate the exact
-                square metres needed, add a 10% wastage buffer, and give you the
-                total cost and carton count.
+              <p className="text-white/90 text-sm md:text-base leading-relaxed mb-12 max-w-md">
+                Tell us about your space and we'll recommend the perfect tiles for your budget.
               </p>
-              <div className="flex flex-col gap-3">
-                {[
-                  "Includes 10% wastage buffer",
-                  "Carton count included",
-                  "Works with any tile price",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#c8a96e] shrink-0" />
-                    <span className="text-foreground/80 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-xl hover:shadow-2xl transition-all"
-            >
-              <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#c8a96e]/40 to-transparent" />
-              <div className="p-7 sm:p-9">
-                <p className="text-foreground/80 text-xs uppercase tracking-widest mb-6">
-                  Room dimensions
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
-                  {[
-                    {
-                      label: "Length (m)",
-                      value: calcLength,
-                      set: setCalcLength,
-                      placeholder: "5",
-                    },
-                    {
-                      label: "Width (m)",
-                      value: calcWidth,
-                      set: setCalcWidth,
-                      placeholder: "4",
-                    },
-                    {
-                      label: "Price (₦/sqm)",
-                      value: calcPrice,
-                      set: setCalcPrice,
-                      placeholder: "12000",
-                    },
-                  ].map((field) => (
-                    <div key={field.label} className="flex flex-col gap-1.5">
-                      <label className="text-muted-foreground text-[10px] uppercase tracking-widest">
-                        {field.label}
-                      </label>
-                      <input
-                        type="number"
-                        className="w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground outline-none text-sm transition-all focus:border-[#a68038] focus:ring-1 focus:ring-[#c8a96e]/20"
-                        placeholder={field.placeholder}
-                        value={field.value}
-                        onChange={(e) => field.set(e.target.value)}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <motion.button
-                  onClick={runCalculator}
-                  className="w-full py-3.5 rounded-xl bg-[#c8a96e] text-[#0b1410] font-black text-sm uppercase tracking-widest mb-6"
-                  whileHover={{ scale: 1.02, backgroundColor: "#d4b87e" }}
-                  whileTap={{ scale: 0.98 }}
+              
+              <div className="mt-auto">
+                <p className="text-white/60 text-[10px] tracking-widest uppercase mb-2">WORKING HOURS</p>
+                <p className="text-white text-xl md:text-2xl mb-8">Mon-Fri 9:00am - 6:00pm</p>
+                <a
+                  href={waGeneralLink("Hello! I need help selecting a tile.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border border-white/60 text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-white hover:text-[#562f3a] transition-colors"
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    <Calculator className="w-4 h-4" /> Calculate
-                  </span>
-                </motion.button>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    {
-                      label: "Base Area",
-                      value: `${displayResult.sqm.toFixed(2)} sqm`,
-                      hi: false,
-                    },
-                    {
-                      label: "With 10% Waste",
-                      value: `${displayResult.withWaste.toFixed(2)} sqm`,
-                      hi: true,
-                    },
-                    {
-                      label: "Cartons Needed",
-                      value: `${displayResult.cartons} cartons`,
-                      hi: false,
-                    },
-                    {
-                      label: "Est. Total",
-                      value: `₦${displayResult.total.toLocaleString("en-NG", { maximumFractionDigits: 0 })}`,
-                      hi: true,
-                    },
-                  ].map((r) => (
-                    <AnimatePresence key={r.label} mode="wait">
-                      <motion.div
-                        key={r.value}
-                        initial={{ opacity: 0.6, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className={`rounded-2xl p-4 border ${r.hi ? "bg-[#c8a96e]/10 border-[#a68038]" : "bg-muted/50 border-border"}`}
-                      >
-                        <p className="text-muted-foreground text-[10px] uppercase tracking-widest mb-1">
-                          {r.label}
-                        </p>
-                        <p
-                          className={`font-black text-xl ${r.hi ? "text-[#a68038]" : "text-foreground"}`}
-                          style={{ fontFamily: "var(--font-cormorant), serif" }}
-                        >
-                          {r.value}
-                        </p>
-                      </motion.div>
-                    </AnimatePresence>
-                  ))}
-                </div>
+                  CALL US ON WHATSAPP
+                </a>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Right (Form) */}
+            <div className="flex flex-col justify-center">
+              <form className="flex flex-col gap-10" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <input
+                    type="text"
+                    placeholder="FULL NAME"
+                    className="bg-transparent border-b border-white/20 text-white placeholder:text-white/50 pb-3 outline-none focus:border-white text-[10px] uppercase tracking-widest transition-colors rounded-none"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="PHONE NUMBER"
+                    className="bg-transparent border-b border-white/20 text-white placeholder:text-white/50 pb-3 outline-none focus:border-white text-[10px] uppercase tracking-widest transition-colors rounded-none"
+                  />
+                </div>
+                <input
+                  type="email"
+                  placeholder="EMAIL ADDRESS"
+                  className="bg-transparent border-b border-white/20 text-white placeholder:text-white/50 pb-3 outline-none focus:border-white text-[10px] uppercase tracking-widest transition-colors w-full rounded-none"
+                />
+                <input
+                  type="text"
+                  placeholder="MESSAGE"
+                  className="bg-transparent border-b border-white/20 text-white placeholder:text-white/50 pb-3 outline-none focus:border-white text-[10px] uppercase tracking-widest transition-colors w-full rounded-none"
+                />
+                <button
+                  type="button"
+                  className="bg-[#f3f0e8] text-black px-12 py-4 text-xs font-semibold tracking-widest uppercase hover:bg-white transition-colors self-start mt-4"
+                >
+                  Shop now
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -566,6 +233,6 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

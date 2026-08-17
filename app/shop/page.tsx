@@ -18,33 +18,32 @@ function FilterSection({
   state,
   stateUpdater,
   defaultOpen = true,
+  onClearAll,
+  showClearAll,
 }: {
   title: string;
   options: string[];
   state: string[];
   stateUpdater: React.Dispatch<React.SetStateAction<string[]>>;
   defaultOpen?: boolean;
+  onClearAll?: () => void;
+  showClearAll?: boolean;
 }) {
   const [open, setOpen] = React.useState(defaultOpen);
 
   return (
-    <div className="mb-4 border border-border/50 rounded-xl overflow-hidden">
+    <div className="mb-8">
       {/* Dropdown header */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-card hover:bg-muted/40 transition-colors"
+        className="w-full flex items-center justify-between py-2 bg-transparent"
       >
-        <span className="text-sm font-black tracking-widest uppercase text-foreground/80">
+        <span className="text-[10px] md:text-xs font-semibold tracking-widest uppercase text-foreground/60">
           {title}
-          {state.length > 0 && (
-            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary text-[10px] text-primary-foreground font-bold">
-              {state.length}
-            </span>
-          )}
         </span>
         <svg
-          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`w-3 h-3 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -56,7 +55,7 @@ function FilterSection({
 
       {/* Collapsible body */}
       {open && (
-        <div className="px-4 py-3 space-y-3 bg-background">
+        <div className="py-3 space-y-4">
           {options.map((opt) => (
             <label
               key={opt}
@@ -75,11 +74,11 @@ function FilterSection({
                 }}
               />
               <div
-                className={`w-4 h-4 border rounded flex items-center justify-center transition-colors ${state.includes(opt) ? "bg-primary border-primary" : "border-border group-hover:border-primary/50"}`}
+                className={`w-4 h-4 border flex items-center justify-center transition-colors ${state.includes(opt) ? "bg-black border-black" : "border-black/30 group-hover:border-black/50"}`}
               >
                 {state.includes(opt) && (
                   <svg
-                    className="w-3 h-3 text-primary-foreground"
+                    className="w-3 h-3 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -94,12 +93,21 @@ function FilterSection({
                 )}
               </div>
               <span
-                className={`text-sm ${state.includes(opt) ? "text-foreground font-semibold" : "text-muted-foreground group-hover:text-foreground"}`}
+                className={`text-sm ${state.includes(opt) ? "text-foreground font-medium" : "text-muted-foreground group-hover:text-foreground"}`}
               >
                 {opt}
               </span>
             </label>
           ))}
+          {/* Clear all filters */}
+          {onClearAll && showClearAll && (
+            <button
+              onClick={onClearAll}
+              className="mt-6 pt-4 text-[10px] md:text-xs font-semibold tracking-widest uppercase text-foreground/80 hover:text-foreground block text-left w-full"
+            >
+              CLEAR ALL FILTERS
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -140,19 +148,51 @@ export default function ShopPage() {
     [products]
   );
 
+  const PRICE_RANGES = useMemo(() => [
+    "under ₦25,000",
+    "₦25,000 - ₦35,000",
+    "₦35,000 - ₦50,000",
+    "above ₦50,000"
+  ], []);
+
   // Filter States
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<string[]>([]);
+  const [selectedPrices, setSelectedPrices] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [selectedSizes, selectedEffects, selectedPrices]);
+
+  const hasActiveFilters = selectedSizes.length > 0 || selectedEffects.length > 0 || selectedPrices.length > 0;
+  
+  const clearAllFilters = () => {
+    setSelectedSizes([]);
+    setSelectedEffects([]);
+    setSelectedPrices([]);
+  };
 
   // Filtering Logic
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       if (selectedSizes.length > 0 && (!p.size || !selectedSizes.includes(p.size))) return false;
       if (selectedEffects.length > 0 && !selectedEffects.includes(p.finish)) return false;
+      if (selectedPrices.length > 0) {
+        const matchesPrice = selectedPrices.some(range => {
+          if (range === "under ₦25,000") return p.pricePerSqm < 25000;
+          if (range === "₦25,000 - ₦35,000") return p.pricePerSqm >= 25000 && p.pricePerSqm <= 35000;
+          if (range === "₦35,000 - ₦50,000") return p.pricePerSqm > 35000 && p.pricePerSqm <= 50000;
+          if (range === "above ₦50,000") return p.pricePerSqm > 50000;
+          return false;
+        });
+        if (!matchesPrice) return false;
+      }
       return true;
     });
-  }, [products, selectedSizes, selectedEffects]);
+  }, [products, selectedSizes, selectedEffects, selectedPrices]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col pt-20">
@@ -208,18 +248,40 @@ export default function ShopPage() {
 
               {/* Filter Content */}
               <div className="flex-1 overflow-y-auto p-6 md:p-0">
-            <FilterSection
-              title="Size"
-              options={sizes}
-              state={selectedSizes}
-              stateUpdater={setSelectedSizes}
-            />
-            <FilterSection
-              title="Effects"
-              options={effectsOptions}
-              state={selectedEffects}
-              stateUpdater={setSelectedEffects}
-            />
+                <FilterSection
+                  title="Tile Size"
+                  options={sizes}
+                  state={selectedSizes}
+                  stateUpdater={setSelectedSizes}
+                  onClearAll={clearAllFilters}
+                  showClearAll={hasActiveFilters}
+                />
+                <FilterSection
+                  title="Price"
+                  options={PRICE_RANGES}
+                  state={selectedPrices}
+                  stateUpdater={setSelectedPrices}
+                  onClearAll={clearAllFilters}
+                  showClearAll={hasActiveFilters}
+                />
+                <FilterSection
+                  title="Effects"
+                  options={effectsOptions}
+                  state={selectedEffects}
+                  stateUpdater={setSelectedEffects}
+                  onClearAll={clearAllFilters}
+                  showClearAll={hasActiveFilters}
+                />
+                
+                {/* Fallback Clear All at the bottom of the sidebar like screenshot */}
+                {hasActiveFilters && (
+                  <button
+                    onClick={clearAllFilters}
+                    className="mt-8 text-[10px] md:text-xs font-semibold tracking-widest uppercase text-foreground/80 hover:text-foreground text-left block"
+                  >
+                    CLEAR ALL FILTERS
+                  </button>
+                )}
               </div>
               
               {/* Mobile Filter Footer (Apply Button) */}
@@ -278,22 +340,34 @@ export default function ShopPage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-                <AnimatePresence>
-                  {filteredProducts.map((p) => (
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.3 }}
-                      key={p.id}
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                  <AnimatePresence>
+                    {filteredProducts.slice(0, visibleCount).map((p) => (
+                      <motion.div
+                        layout
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                        key={p.id}
+                      >
+                        <ProductCard product={p} onAddToCart={addToCart} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+                {visibleCount < filteredProducts.length && (
+                  <div className="mt-12 flex justify-center">
+                    <button
+                      onClick={() => setVisibleCount((v) => v + 12)}
+                      className="border border-black/20 text-black text-[10px] font-semibold tracking-widest uppercase px-8 py-3 hover:bg-black/5 transition-colors"
                     >
-                      <ProductCard product={p} onAddToCart={addToCart} />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
+                      Load More
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -368,7 +442,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer theme="dark" />
       <FloatingWhatsApp />
 
       <AnimatePresence>

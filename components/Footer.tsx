@@ -1,94 +1,112 @@
-'use client';
+"use client";
 
-import { PHONE, EMAIL, ADDRESS } from '../lib/data';
-import Link from 'next/link';
-import { MapPin, Phone, Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
+export default function Footer({ theme }: { theme?: "light" | "dark" }) {
+  const pathname = usePathname();
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-});
+  // Default to dark on /about or if explicitly passed
+  const isDark = theme === "dark" || pathname === "/about";
 
-const FOOTER_LINKS = [
-  { label: 'Shop All', href: '/shop' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Privacy Policy', href: '/policy/privacy' },
-  { label: 'Return Policy', href: '/policy/return' },
-  { label: 'Terms', href: '/terms' },
-];
+  const bgClass = isDark ? "bg-[#282828]" : "bg-[#f3f0e8]";
+  const textClass = isDark ? "text-white" : "text-black";
+  const mutedTextClass = isDark ? "text-white/70" : "text-black/70";
+  const borderClass = isDark ? "border-white/10" : "border-black/10";
 
-export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-          {/* Left Column: Brand & Contact */}
-          <motion.div {...fadeUp(0)} className="flex flex-col">
-            <Link href="/" className="inline-block mb-6 text-foreground hover:text-[#a68038] transition-colors duration-300">
-              <img src="/Logo.png" alt="Ceramika Logo" className="h-6 w-auto object-contain" />
+    <footer className={`${bgClass} ${textClass} border-t ${borderClass}`}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-16 lg:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
+          {/* Column 1: Logo & Tagline (Spans 2 columns to push others right) */}
+          <div className="md:col-span-2">
+            <Link href="/" className="inline-block mb-4">
+              <img
+                src="/Logo.png"
+                alt="Ceramika Logo"
+                className={`h-20 sm:h-25 w-auto object-contain ${isDark ? "brightness-0 invert" : ""}`}
+              />
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
-              Nigeria&apos;s premier destination for premium tiles and finishing materials. Trusted by homeowners, contractors, and architects nationwide.
+            <p
+              className={`text-[10px] sm:text-xs ${mutedTextClass} leading-relaxed max-w-xs pr-4`}
+            >
+              Quality Spanish tiles at the best rate. Part of Impacto Grupo
             </p>
+          </div>
 
-            <div className="flex flex-col gap-3 mt-auto">
+          {/* Column 2: Links */}
+          <div className="md:col-span-1">
+            <h4 className="font-semibold tracking-widest text-[10px] uppercase mb-6">
+              LINKS
+            </h4>
+            <ul className="flex flex-col gap-3">
               {[
-                { Icon: MapPin, val: ADDRESS },
-                { Icon: Phone,  val: PHONE, href: `tel:${PHONE}` },
-                { Icon: Mail,  val: EMAIL, href: `mailto:${EMAIL}` },
-              ].map((item) => (
-                <div key={item.val} className="flex items-start gap-3">
-                  <item.Icon className="w-4 h-4 text-foreground/50 shrink-0 mt-0.5" />
-                  {item.href ? (
-                    <a href={item.href} className="text-muted-foreground text-sm hover:text-foreground transition-colors">
-                      {item.val}
-                    </a>
-                  ) : (
-                    <span className="text-muted-foreground text-sm">{item.val}</span>
-                  )}
-                </div>
+                { label: "Shop All", href: "/shop" },
+                { label: "About Us", href: "/about" },
+                { label: "Privacy Policy", href: "/policy/privacy" },
+                { label: "Return Policy", href: "/policy/return" },
+                { label: "Terms", href: "/terms" },
+              ].map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className={`text-[11px] ${mutedTextClass} hover:${textClass} transition-colors`}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
 
-          {/* Right Column: Links */}
-          <div className="md:ml-auto">
-            <motion.div {...fadeUp(0.1)}>
-              <h4 className="text-foreground font-semibold tracking-widest text-xs mb-6 uppercase">
-                Links
-              </h4>
-              <ul className="flex flex-col gap-4">
-                {FOOTER_LINKS.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      className="text-muted-foreground text-sm hover:text-foreground transition-colors"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+          {/* Column 3: Contact & Socials */}
+          <div className="md:col-span-1 flex flex-col items-start text-left">
+            <h4 className="font-semibold tracking-widest text-[10px] uppercase mb-6">
+              CONTACT
+            </h4>
+            <ul className="flex flex-col gap-3 mb-8">
+              <li className={`text-[11px] ${mutedTextClass} max-w-[200px]`}>
+                12 Tiles Avenue, Victoria Island, Lagos
+              </li>
+              <li className={`text-[11px] ${mutedTextClass}`}>
+                +234 810 000 0000
+              </li>
+              <li className={`text-[11px] ${mutedTextClass}`}>
+                hello@ceramika.ng
+              </li>
+            </ul>
+
+            {/* Socials placed below contact */}
+            <div className="flex flex-row gap-6 items-center">
+              <a
+                href="#"
+                className="font-semibold tracking-widest text-[10px] uppercase hover:opacity-70 transition-opacity"
+              >
+                INSTAGRAM
+              </a>
+              <a
+                href="#"
+                className="font-semibold tracking-widest text-[10px] uppercase hover:opacity-70 transition-opacity"
+              >
+                WHATSAPP
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider text-center sm:text-left">
-            © {new Date().getFullYear()} CeramiKa
+      <div className={`border-t ${borderClass}`}>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p
+            className={`text-[10px] uppercase tracking-widest ${mutedTextClass} text-center sm:text-left`}
+          >
+            © 2026 CERAMIKA
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-muted-foreground/60 text-[10px] sm:text-xs uppercase tracking-wider">
-            <span>All prices in NGN</span>
-            <span className="hidden sm:inline">·</span>
-            <span>CAC Registered</span>
+          <div
+            className={`text-[10px] uppercase tracking-widest ${mutedTextClass} text-center sm:text-right`}
+          >
+            BETTER MATERIALS. BETTER SPACES. BETTER VALUE.
           </div>
         </div>
       </div>

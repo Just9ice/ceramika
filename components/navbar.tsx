@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Search, Menu, X } from "lucide-react";
 
 const NavLink = ({
   href,
@@ -14,24 +14,8 @@ const NavLink = ({
   const pathname = usePathname();
   const isActive = pathname === href;
   return (
-    <Link href={href} passHref legacyBehavior>
-      <motion.a
-        whileHover={{ scale: 1.05, y: -1 }}
-        className="relative px-3 py-2 text-sm font-semibold tracking-widest text-foreground/70 hover:text-foreground transition-colors uppercase"
-      >
-        {isActive && (
-          <motion.span
-            layoutId="nav-pill"
-            className="absolute left-0 -bottom-1 h-[2px] w-full bg-accent transition-all duration-300"
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 30,
-            }}
-          />
-        )}
-        <span className="relative z-10">{children}</span>
-      </motion.a>
+    <Link href={href} className="relative px-2 py-2 text-[10px] md:text-xs font-medium tracking-widest text-foreground hover:text-foreground/70 transition-colors uppercase">
+      {children}
     </Link>
   );
 };
@@ -52,152 +36,106 @@ export default function Navbar({
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest('[aria-label="Toggle menu"]') || target.closest("nav"))
-        return;
-      setMenuOpen(false);
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [menuOpen]);
-
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/40 backdrop-blur-xl border-b border-white/20 shadow-sm saturate-150" : "bg-transparent backdrop-blur-0"}`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#efebe1]/95 backdrop-blur-md shadow-sm"
+          : "bg-[#efebe1]/45 absolute"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Left Links (Desktop) */}
-        <div className="hidden md:flex flex-1 items-center gap-8 justify-start">
-          <NavLink href="/shop">Shop</NavLink>
-        </div>
-
-        {/* Logo (Center) */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="flex justify-center shrink-0"
-        >
-          <Link href="/">
-            {/* We use a stylized text logo or an image logo based on what you have */}
-            <div className="flex items-center text-foreground hover:text-[#a68038] transition-colors duration-300">
-              <img
-                src="/Logo.png"
-                alt="Ceramika Logo"
-                className="h-6 sm:h-8 w-auto object-contain"
-              />
-            </div>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between relative">
+        {/* Left: Logo */}
+        <div className="flex-1 flex items-center justify-start">
+          <Link href="/" className="flex items-center">
+            <img
+              src="/Logo.png"
+              alt="Ceramika Logo"
+              className="h-6 sm:h-8 w-auto object-contain"
+            />
           </Link>
-        </motion.div>
-
-        {/* Right Actions & Links */}
-        <div className="hidden md:flex flex-1 items-center gap-8 justify-end">
-          <NavLink href="/about">About</NavLink>
-
-          <div className="flex items-center gap-4 pl-4 border-l border-border/50">
-            <motion.button
-              onClick={onCartOpen}
-              whileTap={{ scale: 0.9 }}
-              whileHover={{
-                scale: 1.15,
-                rotate: -15,
-                transition: { type: "spring", stiffness: 400, damping: 10 },
-              }}
-              className="relative flex items-center gap-2 p-2 text-sm font-semibold tracking-widest text-foreground/70 hover:text-foreground transition-colors uppercase"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount}
-            </motion.button>
-          </div>
         </div>
 
-        {/* Mobile Hamburger & Actions */}
-        <div className="flex items-center gap-4 md:hidden">
+        {/* Center: Links (Desktop) */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-8">
+          <NavLink href="/shop">Shop</NavLink>
+          <NavLink href="/locations">Locations</NavLink>
+          <NavLink href="/about">About Us</NavLink>
+          <NavLink href="/cart">Cart</NavLink>
+        </div>
+
+        {/* Right: Actions */}
+        <div className="hidden md:flex flex-1 items-center justify-end gap-6">
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="text-[#252525] hover:[#641F35] transition-colors duration-300"
+          >
+            <Search className="w-5 h-5" strokeWidth={1.5} />
+          </motion.button>
           <motion.button
             onClick={onCartOpen}
             whileTap={{ scale: 0.9 }}
-            whileHover={{
-              scale: 1.15,
-              rotate: -15,
-              transition: { type: "spring", stiffness: 400, damping: 10 },
-            }}
-            className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
+            className="relative text-[#252525] hover:[#641F35] transition-colors duration-300"
           >
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart className="w-5 h-5" strokeWidth={1.5} />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-accent text-accent-foreground text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
             )}
           </motion.button>
+        </div>
 
+        {/* Mobile Hamburger */}
+        <div className="flex items-center gap-4 md:hidden">
+          <button onClick={onCartOpen} className="relative text-foreground">
+            <ShoppingCart className="w-5 h-5" strokeWidth={1.5} />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-accent text-accent-foreground text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setMenuOpen(!menuOpen);
-            }}
-            className="p-2 text-foreground/70 hover:text-foreground"
-            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-foreground p-1"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {menuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {menuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav Menu */}
-      {menuOpen && (
-        <AnimatePresence>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border/50 px-6 py-4 flex flex-col gap-4 shadow-xl"
+            className="md:hidden bg-[#efebe1] border-t border-border/20 px-6 py-4 flex flex-col gap-4 overflow-hidden"
           >
             {[
               { label: "Shop", href: "/shop" },
-              { label: "About", href: "/about" },
+              { label: "Locations", href: "/locations" },
+              { label: "About Us", href: "/about" },
+              { label: "Cart", href: "/cart" },
             ].map((link) => (
-              <Link href={link.href} key={link.label} legacyBehavior>
-                <a
-                  onClick={() => setMenuOpen(false)}
-                  className="text-foreground/80 hover:text-accent font-bold py-4 border-b border-border/50 text-base tracking-widest uppercase transition-colors"
-                >
-                  {link.label}
-                </a>
+              <Link
+                href={link.href}
+                key={link.label}
+                onClick={() => setMenuOpen(false)}
+                className="text-foreground font-medium py-3 border-b border-black/5 text-sm tracking-widest uppercase transition-colors"
+              >
+                {link.label}
               </Link>
             ))}
           </motion.div>
-        </AnimatePresence>
-      )}
-    </motion.header>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }
