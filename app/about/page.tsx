@@ -17,11 +17,11 @@ export default function About() {
 
       {/* Hero Image */}
       <section className="pt-20">
-        <div className="w-full h-[60vh] md:h-[70vh] relative">
+        <div className="w-full aspect-[4/3] md:aspect-auto md:h-[70vh] relative overflow-hidden">
           <Image
             src="https://res.cloudinary.com/dpsufnobu/image/upload/v1786968946/products_unmapped/zjg8gxovdfju0fmomcww.png"
             alt="Ceramika interior"
-            className="w-full h-full object-cover"
+            className="object-cover"
             fill
             sizes="100vw"
             priority
@@ -109,11 +109,11 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
             {/* Image */}
-            <div className="aspect-square md:aspect-[4/3] w-full bg-white">
+            <div className="aspect-square md:aspect-[4/3] w-full bg-white overflow-hidden">
               <img
                 src="https://res.cloudinary.com/dpsufnobu/image/upload/products/PRSCK44BONOSAND1A_env.jpg"
                 alt="Stacked Ceramika tiles"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
 
