@@ -40,15 +40,18 @@ export default function Home() {
             alt="Living room with beautiful tiles"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
         <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-8 mt-10">
           <div className="max-w-[600px]">
             <h1 className="text-white text-[2.5rem] md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-4">
-              Quality Spanish tiles<br/>at the best rate
+              Quality Spanish tiles
+              <br />
+              at the best rate
             </h1>
             <p className="text-white leading-relaxed text-base md:text-lg mb-8 max-w-[450px]">
-              Spanish-quality tiles selected for beautiful spaces, practical projects and better value.
+              Spanish-quality tiles selected for beautiful spaces, practical
+              projects and better value.
             </p>
             <Link
               href="/shop"
@@ -66,8 +69,15 @@ export default function Home() {
           <h2 className="text-xl md:text-2xl font-medium mb-6">Clearance</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {clearanceImages.map((src, i) => (
-              <div key={`clearance-${i}`} className="aspect-square bg-gray-100 overflow-hidden">
-                <img src={src} alt="Clearance Tile" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <div
+                key={`clearance-${i}`}
+                className="aspect-square bg-gray-100 overflow-hidden"
+              >
+                <img
+                  src={src}
+                  alt="Clearance Tile"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
             ))}
           </div>
@@ -80,8 +90,15 @@ export default function Home() {
           <h2 className="text-xl md:text-2xl font-medium mb-6">New in</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {newInImages.map((src, i) => (
-              <div key={`newin-${i}`} className="aspect-square bg-gray-100 overflow-hidden">
-                <img src={src} alt="New In Tile" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <div
+                key={`newin-${i}`}
+                className="aspect-square bg-gray-100 overflow-hidden"
+              >
+                <img
+                  src={src}
+                  alt="New In Tile"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
             ))}
           </div>
@@ -98,12 +115,17 @@ export default function Home() {
                 Need help selecting a tile?
               </h2>
               <p className="text-white/90 text-sm md:text-base leading-relaxed mb-12 max-w-md">
-                Tell us about your space and we'll recommend the perfect tiles for your budget.
+                Tell us about your space and we'll recommend the perfect tiles
+                for your budget.
               </p>
-              
+
               <div className="mt-auto">
-                <p className="text-white/60 text-[10px] tracking-widest uppercase mb-2">WORKING HOURS</p>
-                <p className="text-white text-xl md:text-2xl mb-8">Mon-Fri 9:00am - 6:00pm</p>
+                <p className="text-white/60 text-[10px] tracking-widest uppercase mb-2">
+                  WORKING HOURS
+                </p>
+                <p className="text-white text-xl md:text-2xl mb-8">
+                  Mon-Fri 9:00am - 6:00pm
+                </p>
                 <a
                   href={waGeneralLink("Hello! I need help selecting a tile.")}
                   target="_blank"
@@ -117,7 +139,10 @@ export default function Home() {
 
             {/* Right (Form) */}
             <div className="flex flex-col justify-center">
-              <form className="flex flex-col gap-10" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="flex flex-col gap-10"
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <input
                     type="text"
